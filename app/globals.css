@@ -29,6 +29,11 @@
     scroll-padding-top: 80px; /* Añade espacio para el header fijo */
   }
 
+  body {
+    background-color: var(--primary);
+    color: var(--secondary);
+  }
+
   .mode {
     background-color: var(--background);
     color: var(--foreground);
@@ -54,6 +59,22 @@
     background-color: purple;
     transform: scaleX(0.3);
     transform-origin: left;
+  }
+
+  /* Estilos específicos para contenido del blog en modo oscuro */
+  .dark .prose p,
+  .dark .prose li,
+  .dark .prose h1,
+  .dark .prose h2,
+  .dark .prose h3,
+  .dark .prose h4,
+  .dark .prose h5,
+  .dark .prose h6,
+  .dark .prose strong,
+  .dark .prose blockquote,
+  .dark .prose code,
+  .dark .prose em {
+    color: var(--secondary) !important;
   }
 }
 

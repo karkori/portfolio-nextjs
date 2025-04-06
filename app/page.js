@@ -9,8 +9,24 @@ import Portfolio from "@/components/Portfolio";
 import MyServices from "@/components/MyServices";
 import WorkingStyle from "@/components/WorkingStyle";
 import Head from "next/head";
+import Script from "next/script";
+import { useEffect } from "react";
 
 export default function Home() {
+  // Función para manejar la redirección tras login con Netlify Identity
+  useEffect(() => {
+    // Verificar si el script de Netlify Identity está cargado
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  }, []);
+
   return (
     <div className="">
       <Head>
@@ -21,6 +37,11 @@ export default function Home() {
           rel="stylesheet"
         />
       </Head>
+      {/* Script de Netlify Identity */}
+      <Script 
+        src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+        strategy="afterInteractive"
+      />
       <Header />
       <Hero />
       <AreasOfExpertise />
