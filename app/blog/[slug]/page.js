@@ -30,12 +30,12 @@ export default async function BlogPost({ params }) {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="max-w-3xl mx-auto">
-        <Link href="/blog" className="text-teal-500 hover:underline mb-4 inline-block">
+        <Link href="/blog" className="text-teal-500 hover:underline">
           ← Volver a todos los artículos
         </Link>
         
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">{post.title}</h1>
-        <div className="mb-6 text-gray-600 dark:text-gray-400">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-secondary">{post.title}</h1>
+        <div className="mb-6 text-gray-600 dark:text-secondary">
           <span>{post.date}</span>
         </div>
         
@@ -67,13 +67,13 @@ export default async function BlogPost({ params }) {
         )}
         
         <div 
-          className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-gray-800 dark:prose-headings:text-white prose-a:text-teal-600 dark:prose-a:text-teal-400"
+          className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-gray-800 dark:prose-headings:text-secondary prose-a:text-teal-600 dark:prose-a:text-teal-400"
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
         
         {/* Compartir artículo */}
         <div className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <h3 className="text-xl font-bold mb-4 dark:text-white">Compartir este artículo</h3>
+          <h3 className="text-xl font-bold mb-4 text-secondary">Compartir este artículo</h3>
           <div className="flex space-x-4">
             <a 
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://mostapha.dev/blog/${slug}`)}`} 

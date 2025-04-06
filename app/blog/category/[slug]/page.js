@@ -18,7 +18,7 @@ export default async function CategoryPage({ params }) {
   
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-2 dark:text-white">
+      <h1 className="text-3xl font-bold mb-2 text-secondary">
         {category.title}
       </h1>
       <div className="mb-8">
@@ -29,7 +29,7 @@ export default async function CategoryPage({ params }) {
       
       {filteredPosts.length === 0 ? (
         <div className="text-center py-10">
-          <p className="text-xl text-gray-600 dark:text-gray-400">No hay artículos en esta categoría todavía.</p>
+          <p className="text-xl text-gray-600 dark:text-secondary">No hay artículos en esta categoría todavía.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -48,11 +48,11 @@ export default async function CategoryPage({ params }) {
                 </div>
                 <div className="p-4">
                   <p className="text-sm text-gray-500 dark:text-gray-400">{post.date}</p>
-                  <h2 className="text-xl font-semibold mb-2 dark:text-white">{post.title}</h2>
-                  <p className="text-gray-700 dark:text-gray-300">{post.description}</p>
+                  <h2 className="text-xl font-semibold mb-2 text-secondary">{post.title}</h2>
+                  <p className="text-gray-700 dark:text-secondary">{post.description}</p>
                   <div className="mt-4">
                     {post.tags && post.tags.map((tag) => (
-                      <span key={tag} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:bg-gray-700 dark:text-gray-300">
+                      <span key={tag} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:bg-gray-700 dark:text-secondary">
                         #{tag}
                       </span>
                     ))}

@@ -10,7 +10,7 @@ export default async function Blog() {
   
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-6 dark:text-white">Mi Blog</h1>
+      <h1 className="text-3xl font-bold mb-6 text-secondary">Mi Blog</h1>
       
       {/* Categorías en vista móvil */}
       <div className="flex overflow-x-auto pb-4 mb-6 md:hidden">
@@ -18,7 +18,7 @@ export default async function Blog() {
           <Link 
             key={index}
             href={`/blog/category/${category.slug}`}
-            className="flex-shrink-0 px-4 py-2 mr-2 rounded-full bg-gray-100 text-gray-800 hover:bg-teal-500 hover:text-white dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-teal-600"
+            className="flex-shrink-0 px-4 py-2 mr-2 rounded-full bg-gray-100 text-gray-800 hover:bg-teal-500 hover:text-white dark:bg-gray-800 dark:text-secondary dark:hover:bg-teal-600"
           >
             {category.title}
           </Link>
@@ -27,7 +27,7 @@ export default async function Blog() {
       
       {posts.length === 0 ? (
         <div className="text-center py-10">
-          <p className="text-xl text-gray-600 dark:text-gray-400">No hay artículos publicados todavía.</p>
+          <p className="text-xl text-gray-600 dark:text-secondary">No hay artículos publicados todavía.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -46,14 +46,14 @@ export default async function Blog() {
                 </div>
                 <div className="p-4">
                   <p className="text-sm text-gray-500 dark:text-gray-400">{post.date}</p>
-                  <h2 className="text-xl font-semibold mb-2 dark:text-white">{post.title}</h2>
-                  <p className="text-gray-700 dark:text-gray-300">{post.description}</p>
+                  <h2 className="text-xl font-semibold mb-2 text-secondary">{post.title}</h2>
+                  <p className="text-gray-700 dark:text-secondary">{post.description}</p>
                   <div className="mt-4">
                     {post.tags && post.tags.map((tag) => (
                       <Link 
                         key={tag} 
                         href={`/blog/category/${tag}`}
-                        className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:bg-gray-700 dark:text-gray-300 hover:bg-teal-100 dark:hover:bg-teal-900"
+                        className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:bg-gray-700 dark:text-secondary hover:bg-teal-100 dark:hover:bg-teal-900"
                       >
                         #{tag}
                       </Link>
