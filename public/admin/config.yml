@@ -1,14 +1,11 @@
 backend:
-  name: github
-  repo: karkori/portfolio-nextjs 
+  name: git-gateway
   branch: main
-  base_url: http://localhost:3000
-  auth_endpoint: api/auth
+  repo: karkori/portfolio-nextjs
+  site_id: 617b4b43-f58c-490f-9009-fb394d95c762
 
 # Para desarrollo local sin necesidad de Netlify
-# local_backend: true
-# local_backend:
-#   url: http://localhost:8081/api/v1
+local_backend: true
 
 # Rutas de medios
 media_folder: public/images/blog
@@ -22,7 +19,7 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {label: "Título", name: "title", widget: "string"}
-      - {label: "Fecha de Publicación", name: "date", widget: "datetime"}
+      - {label: "Fecha de Publicación", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: true}
       - {label: "Imagen de Portada", name: "thumbnail", widget: "image"}
       - {label: "Descripción", name: "description", widget: "text"}
       - {label: "Categoría", name: "category", widget: "select", options: ["Desarrollo Web", "JavaScript", "React", "Next.js", "Diseño", "Otros"]}
