@@ -47,7 +47,7 @@ export default async function Blog() {
                 </div>
                 <div className="p-5">
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{post.date}</p>
-                  <h2 className="text-xl font-semibold mb-2 text-secondary group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{post.title}</h2>
+                  <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{post.title}</h2>
                   <p className="text-gray-700 dark:text-secondary line-clamp-3">{post.description}</p>
                   <div className="mt-4 flex flex-wrap">
                     {post.tags && post.tags.map((tag) => (
