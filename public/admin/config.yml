@@ -1,11 +1,10 @@
+# Desarrollo local sin autenticación
+local_backend: true
+
+# Configuración de backend para uso local
 backend:
   name: git-gateway
   branch: main
-  repo: karkori/portfolio-nextjs
-  site_id: 617b4b43-f58c-490f-9009-fb394d95c762
-
-# Para desarrollo local sin necesidad de Netlify
-local_backend: true
 
 # Rutas de medios
 media_folder: public/images/blog
