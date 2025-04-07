@@ -162,24 +162,105 @@
   
   /* Listas con íconos y mejor espaciado */
   .prose ul {
-    list-style: none;
-    padding-left: 1.5rem;
+    list-style-type: none !important;
+    counter-reset: none !important;
+    padding-left: 2rem;
+    margin: 1.5rem 1rem 1.5rem 0.5rem;
   }
   
   .prose ul li {
     position: relative;
     margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+    transition: all 0.2s ease;
+    counter-increment: none !important;
   }
   
   .prose ul li::before {
-    content: "•";
+    content: "" !important;
     position: absolute;
     left: -1.25rem;
-    color: #14b8a6;
-    font-weight: bold;
-    font-size: 1.25em;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #14b8a6;
+    box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2);
+    transform: translateY(-50%);
   }
   
+  /* Remover cualquier numeración o contenido en el ::before */
+  .prose ul li::marker {
+    content: none !important;
+    display: none !important;
+  }
+  
+  .prose ul li:hover {
+    transform: translateX(3px);
+  }
+  
+  /* Estilo para listas anidadas */
+  .prose ul ul {
+    margin-top: 0.75rem;
+    margin-left: 0.5rem;
+  }
+  
+  .prose ul ul li::before {
+    width: 5px;
+    height: 5px;
+    background-color: #0ea5e9;
+  }
+
+  /* Para listas ordenadas (numeradas) */
+  .prose ol {
+    list-style: none;
+    counter-reset: custom-counter;
+    padding-left: 2rem;
+    margin: 1.5rem 1rem 1.5rem 0.5rem;
+  }
+  
+  .prose ol li {
+    position: relative;
+    counter-increment: custom-counter;
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .prose ol li::before {
+    content: counter(custom-counter) !important;
+    position: absolute;
+    left: -2rem;
+    top: 0.15em;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Estilos específicos para las listas en el artículo de Spring Boot */
+  .prose article ul li::before {
+    content: "" !important;
+    display: block !important;
+    counter-increment: none !important;
+  }
+  
+  /* Forzar estilo de lista no ordenada */
+  .prose *:not(ol) > li {
+    list-style-type: none !important;
+    counter-increment: none !important;
+  }
+  
+  .prose *:not(ol) > li::before {
+    content: "" !important;
+  }
+
   /* Estilo para bloques de información o nota */
   .prose blockquote {
     margin: 1.5rem 0;
@@ -295,6 +376,86 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
+
+  /* Estilos específicos para las listas en artículos */
+  .article-content ul {
+    list-style-type: none !important;
+    padding-left: 2rem !important;
+    margin: 1.5rem 1rem 1.5rem 0.5rem !important;
+  }
+
+  .article-content ul li {
+    position: relative !important;
+    margin-bottom: 0.75rem !important;
+    padding-left: 0.5rem !important;
+    transition: all 0.2s ease !important;
+    counter-increment: none !important;
+  }
+
+  .article-content ul li::before {
+    content: "" !important;
+    position: absolute !important;
+    left: -1.25rem !important;
+    top: 0.6em !important;
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background-color: #14b8a6 !important;
+    box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2) !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .article-content ul li::marker {
+    content: none !important;
+    display: none !important;
+  }
+
+  .article-content ul li:hover {
+    transform: translateX(3px) !important;
+  }
+
+  .article-content ol {
+    list-style: none !important;
+    counter-reset: custom-counter !important;
+    padding-left: 2rem !important;
+    margin: 1.5rem 1rem 1.5rem 0.5rem !important;
+  }
+
+  .article-content ol li {
+    position: relative !important;
+    counter-increment: custom-counter !important;
+    margin-bottom: 0.75rem !important;
+    padding-left: 0.5rem !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .article-content ol li::before {
+    content: counter(custom-counter) !important;
+    position: absolute !important;
+    left: -2rem !important;
+    top: 0.15em !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, #14b8a6, #0ea5e9) !important;
+    color: white !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .article-content ol li:hover {
+    transform: translateX(3px) !important;
+  }
+
+  /* Estilos específicos para las listas en el artículo de Spring Boot */
+  .prose article ul li::before {
+    content: "" !important;
+    display: block !important;
+    counter-increment: none !important;
+  }
 }
 
 @layer utilities {
@@ -332,22 +493,81 @@
   
   /* Utilidades para elementos técnicos */
   .tech-badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    background-color: #dbeafe;
+    color: #1e40af;
+  }
+  
+  .dark .tech-badge {
+    background-color: #1e3a8a;
+    color: #93c5fd;
   }
   
   .code-filename {
-    @apply block text-sm font-mono text-gray-500 dark:text-gray-400 mb-2 pb-2 border-b border-gray-200 dark:border-gray-700;
+    display: block;
+    font-size: 0.875rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .dark .code-filename {
+    color: #9ca3af;
+    border-bottom-color: #374151;
   }
   
   .tech-note {
-    @apply p-4 my-6 rounded-lg bg-amber-50 border-l-4 border-amber-500 text-amber-800 dark:bg-amber-950 dark:text-amber-200 dark:border-amber-600;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #fffbeb;
+    border-left: 4px solid #f59e0b;
+    color: #92400e;
+  }
+  
+  .dark .tech-note {
+    background-color: rgba(146, 64, 14, 0.1);
+    color: #fcd34d;
+    border-left-color: #f59e0b;
   }
   
   .tech-tip {
-    @apply p-4 my-6 rounded-lg bg-emerald-50 border-l-4 border-emerald-500 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200 dark:border-emerald-600;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #ecfdf5;
+    border-left: 4px solid #10b981;
+    color: #065f46;
+  }
+  
+  .dark .tech-tip {
+    background-color: rgba(6, 95, 70, 0.1);
+    color: #6ee7b7;
+    border-left-color: #10b981;
   }
   
   .tech-warning {
-    @apply p-4 my-6 rounded-lg bg-red-50 border-l-4 border-red-500 text-red-800 dark:bg-red-950 dark:text-red-200 dark:border-red-600;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #fee2e2;
+    border-left: 4px solid #ef4444;
+    color: #991b1b;
+  }
+  
+  .dark .tech-warning {
+    background-color: rgba(153, 27, 27, 0.1);
+    color: #fca5a5;
+    border-left-color: #ef4444;
   }
 }

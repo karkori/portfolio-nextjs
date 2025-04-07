@@ -27,6 +27,10 @@ export default async function BlogPost({ params }) {
   const { slug } = params;
   const post = await getPostBySlug(slug);
   
+  if (!post) {
+    notFound();
+  }
+
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="max-w-4xl mx-auto">
@@ -108,24 +112,13 @@ export default async function BlogPost({ params }) {
           </div>
         )}
         
-        {/* Contenido del artículo */}
-        <div 
-          className="prose prose-lg max-w-none dark:prose-invert
-            prose-headings:text-gray-800 dark:prose-headings:text-gray-100
-            prose-headings:font-bold prose-headings:tracking-tight
-            prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pb-2 prose-h2:border-b prose-h2:border-gray-200 dark:prose-h2:border-gray-700
-            prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
-            prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed
-            prose-a:text-teal-600 dark:prose-a:text-teal-400 prose-a:font-medium prose-a:underline-offset-2 prose-a:decoration-teal-500/50 hover:prose-a:decoration-teal-500
-            prose-blockquote:border-l-teal-500 prose-blockquote:bg-gray-50 dark:prose-blockquote:bg-gray-800/50 prose-blockquote:py-0.5 prose-blockquote:px-4 prose-blockquote:rounded-sm
-            prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:my-2
-            prose-img:rounded-lg prose-img:shadow-md
-            prose-strong:text-gray-900 dark:prose-strong:text-white
-            prose-hr:border-gray-300 dark:prose-hr:border-gray-700
-            prose-code:text-teal-800 dark:prose-code:text-teal-300 prose-code:bg-teal-50 dark:prose-code:bg-teal-950/30 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-medium prose-code:before:content-none prose-code:after:content-none
-            prose-pre:bg-gray-900 dark:prose-pre:bg-black prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-gray-800 prose-pre:rounded-lg prose-pre:shadow-md"
-          dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-        />
+        {/* Contenido del artículo con estilo específico para listas */}
+        <div className="article-content">
+          <div 
+            className="prose prose-lg max-w-none dark:prose-invert article-content"
+            dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+          />
+        </div>
         
         {/* Sección de compartir */}
         <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
