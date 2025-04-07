@@ -12,17 +12,19 @@ export default async function Blog() {
     <div className="container mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-6 text-secondary">Mi Blog</h1>
       
-      {/* Categorías en vista móvil */}
-      <div className="flex overflow-x-auto pb-4 mb-6 md:hidden">
-        {blogCategories.map((category, index) => (
-          <Link 
-            key={index}
-            href={`/blog/category/${category.slug}`}
-            className="flex-shrink-0 px-4 py-2 mr-2 rounded-full bg-gray-100 text-gray-800 hover:bg-teal-500 hover:text-white dark:bg-gray-800 dark:text-secondary dark:hover:bg-teal-600"
-          >
-            {category.title}
-          </Link>
-        ))}
+      {/* Categorías */}
+      <div className="mb-6 hidden md:block">
+        <div className="flex flex-wrap gap-2">
+          {blogCategories.map((category, index) => (
+            <Link 
+              key={index}
+              href={`/blog/category/${category.slug}`}
+              className="px-4 py-2 rounded-full bg-gray-100 text-gray-800 hover:bg-teal-500 hover:text-white dark:bg-gray-800 dark:text-secondary dark:hover:bg-teal-600 transition-colors"
+            >
+              {category.title}
+            </Link>
+          ))}
+        </div>
       </div>
       
       {posts.length === 0 ? (
@@ -31,7 +33,7 @@ export default async function Blog() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <div key={post.slug} className="h-full">
               <div className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex flex-col h-full">
                 <Link href={`/blog/${post.slug}`} className="block group">
@@ -41,6 +43,9 @@ export default async function Blog() {
                         src={post.thumbnail} 
                         alt={post.title}
                         fill
+                        // Dar prioridad a las primeras imágenes (las más propensas a ser LCP)
+                        priority={index < 3}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         style={{ objectFit: 'cover' }}
                         className="transition-transform duration-300 group-hover:scale-105"
                       />

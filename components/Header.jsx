@@ -1,13 +1,16 @@
 "use client";
-import { headerList } from "@/lib/data";
+import { headerList, blogCategories } from "@/lib/data";
 import { useTheme } from "@/providers/ThemeProvider";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { toggleTheme, theme } = useTheme();
+  const pathname = usePathname();
+  const isBlogPage = pathname === "/blog" || pathname.startsWith("/blog/");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -125,6 +128,25 @@ const Header = () => {
                 {item.title}
               </Link>
             ))}
+            
+            {/* Categorías del blog en menú móvil cuando estamos en la página del blog */}
+            {isBlogPage && (
+              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Categorías del Blog</div>
+                <div className="flex flex-wrap gap-2">
+                  {blogCategories.map((category, index) => (
+                    <Link 
+                      key={index}
+                      href={`/blog/category/${category.slug}`}
+                      className="inline-block px-3 py-1 mb-2 text-sm rounded-full bg-gray-100 text-gray-800 hover:bg-teal-500 hover:text-white dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-teal-600 transition-colors"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {category.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>

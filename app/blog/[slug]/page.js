@@ -47,24 +47,26 @@ export default async function BlogPost({ params }) {
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <Link 
-          href="/blog" 
-          className="inline-flex items-center text-teal-600 hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300 transition-colors duration-200 mb-6 group"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 group-hover:-translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          Volver a todos los artículos
-        </Link>
-        
-        {/* Categoría */}
-        {post.category && (
-          <div className="mb-4">
-            <span className="inline-block bg-gradient-to-r from-teal-500 to-teal-700 text-white text-sm px-3 py-1 rounded-full font-medium">
+        <div className="flex items-center mb-8">
+          <Link 
+            href="/blog" 
+            className="flex items-center justify-center px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-teal-600 hover:text-teal-700 dark:text-teal-400 dark:hover:text-teal-300 transition-all duration-200 group hover:bg-gray-200 dark:hover:bg-gray-700"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 group-hover:-translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            <span>Volver a todos los artículos</span>
+          </Link>
+          
+          {post.category && (
+            <span className="ml-auto inline-flex items-center bg-gradient-to-r from-teal-500 to-teal-700 text-white text-sm px-3 py-1 rounded-full font-medium">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+              </svg>
               {post.category}
             </span>
-          </div>
-        )}
+          )}
+        </div>
         
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-secondary bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300">
           {post.title}
@@ -95,6 +97,7 @@ export default async function BlogPost({ params }) {
               alt={post.title}
               fill
               priority
+              sizes="(max-width: 768px) 100vw, 1024px"
               style={{ objectFit: 'cover' }}
               className="transition-transform duration-500 hover:scale-105"
             />
