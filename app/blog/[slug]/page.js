@@ -28,37 +28,79 @@ export default async function BlogPost({ params }) {
   const post = await getPostBySlug(slug);
   
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="max-w-3xl mx-auto">
-        <Link href="/blog" className="text-teal-500 hover:underline">
-          ← Volver a todos los artículos
+    <div className="container mx-auto py-12 px-4">
+      <div className="max-w-4xl mx-auto">
+        <Link 
+          href="/blog" 
+          className="inline-flex items-center text-teal-600 hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300 transition-colors duration-200 mb-6 group"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 group-hover:-translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Volver a todos los artículos
         </Link>
         
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-secondary">{post.title}</h1>
-        <div className="mb-6 text-gray-600 dark:text-secondary">
-          <span>{post.date}</span>
+        {/* Categoría */}
+        {post.category && (
+          <div className="mb-4">
+            <span className="inline-block bg-gradient-to-r from-teal-500 to-teal-700 text-white text-sm px-3 py-1 rounded-full font-medium">
+              {post.category}
+            </span>
+          </div>
+        )}
+        
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-secondary bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300">
+          {post.title}
+        </h1>
+        
+        <div className="mb-8 text-gray-600 dark:text-gray-400 flex items-center">
+          <span className="inline-flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            {post.date}
+          </span>
+          
+          {post.readingTime && (
+            <span className="inline-flex items-center ml-4">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {post.readingTime}
+            </span>
+          )}
         </div>
         
         {post.thumbnail && (
-          <div className="relative w-full h-64 md:h-96 mb-8">
+          <div className="relative w-full h-72 md:h-96 mb-10 rounded-xl overflow-hidden shadow-xl">
             <Image 
               src={post.thumbnail} 
               alt={post.title}
               fill
+              priority
               style={{ objectFit: 'cover' }}
-              className="rounded-lg"
+              className="transition-transform duration-500 hover:scale-105"
             />
           </div>
         )}
         
-        {/* Etiquetas/Categorías */}
+        {/* Descripción destacada */}
+        {post.description && (
+          <div className="mb-10 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg border-l-4 border-teal-500 shadow-sm">
+            <p className="text-lg italic text-gray-700 dark:text-gray-300">
+              {post.description}
+            </p>
+          </div>
+        )}
+        
+        {/* Etiquetas */}
         {post.tags && post.tags.length > 0 && (
-          <div className="mb-8">
+          <div className="mb-10">
             {post.tags.map((tag) => (
               <Link 
                 key={tag} 
                 href={`/blog/category/${tag}`}
-                className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:bg-gray-700 dark:text-gray-300 hover:bg-teal-100 dark:hover:bg-teal-900"
+                className="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm font-medium text-gray-700 mr-2 mb-2 dark:bg-gray-700 dark:text-gray-300 hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors duration-200"
               >
                 #{tag}
               </Link>
@@ -66,39 +108,76 @@ export default async function BlogPost({ params }) {
           </div>
         )}
         
+        {/* Contenido del artículo */}
         <div 
-          className="prose prose-lg max-w-none dark:prose-invert prose-headings:text-secondary dark:prose-headings:text-secondary prose-a:text-teal-600 dark:prose-a:text-teal-400 prose-p:text-secondary dark:prose-p:text-secondary prose-li:text-secondary dark:prose-li:text-secondary prose-strong:text-secondary dark:prose-strong:text-secondary prose-em:text-secondary dark:prose-em:text-secondary"
+          className="prose prose-lg max-w-none dark:prose-invert
+            prose-headings:text-gray-800 dark:prose-headings:text-gray-100
+            prose-headings:font-bold prose-headings:tracking-tight
+            prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pb-2 prose-h2:border-b prose-h2:border-gray-200 dark:prose-h2:border-gray-700
+            prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
+            prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed
+            prose-a:text-teal-600 dark:prose-a:text-teal-400 prose-a:font-medium prose-a:underline-offset-2 prose-a:decoration-teal-500/50 hover:prose-a:decoration-teal-500
+            prose-blockquote:border-l-teal-500 prose-blockquote:bg-gray-50 dark:prose-blockquote:bg-gray-800/50 prose-blockquote:py-0.5 prose-blockquote:px-4 prose-blockquote:rounded-sm
+            prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:my-2
+            prose-img:rounded-lg prose-img:shadow-md
+            prose-strong:text-gray-900 dark:prose-strong:text-white
+            prose-hr:border-gray-300 dark:prose-hr:border-gray-700
+            prose-code:text-teal-800 dark:prose-code:text-teal-300 prose-code:bg-teal-50 dark:prose-code:bg-teal-950/30 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-medium prose-code:before:content-none prose-code:after:content-none
+            prose-pre:bg-gray-900 dark:prose-pre:bg-black prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-gray-800 prose-pre:rounded-lg prose-pre:shadow-md"
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
         
-        {/* Compartir artículo */}
-        <div className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <h3 className="text-xl font-bold mb-4 text-secondary">Compartir este artículo</h3>
-          <div className="flex space-x-4">
+        {/* Sección de compartir */}
+        <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+          <h3 className="text-xl font-bold mb-6 text-secondary">Compartir este artículo</h3>
+          <div className="flex flex-wrap gap-4">
             <a 
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://mostapha.dev/blog/${slug}`)}`} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
+              className="flex items-center bg-[#1DA1F2] text-white px-4 py-2 rounded-md hover:bg-[#1a94e0] transition-colors duration-200"
             >
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+              </svg>
               Twitter
             </a>
             <a 
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://mostapha.dev/blog/${slug}`)}`} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-blue-700 hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-400"
+              className="flex items-center bg-[#0A66C2] text-white px-4 py-2 rounded-md hover:bg-[#0958a8] transition-colors duration-200"
             >
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
               LinkedIn
             </a>
             <a 
               href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(`https://mostapha.dev/blog/${slug}`)}`} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300"
+              className="flex items-center bg-[#1877F2] text-white px-4 py-2 rounded-md hover:bg-[#166fe5] transition-colors duration-200"
             >
+              <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" />
+              </svg>
               Facebook
             </a>
+          </div>
+        </div>
+        
+        {/* Autor y fecha de actualización */}
+        <div className="mt-12 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-sm">
+          <div className="flex flex-col md:flex-row items-start md:items-center">
+            <div className="flex-1">
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                Última actualización: {post.date}
+              </p>
+              <p className="mt-2 text-gray-600 dark:text-gray-300">
+                Si te ha gustado este artículo, no dudes en compartirlo con tus colegas o dejar un comentario.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -123,14 +202,24 @@ async function getPostBySlug(slug) {
       tags = tags.split(',').map(tag => tag.trim());
     }
     
+    // Calcular tiempo de lectura (aproximado)
+    const wordCount = content.split(/\s+/).length;
+    const readingTime = `${Math.ceil(wordCount / 225)} min de lectura`;
+    
     return {
       slug,
       contentHtml,
       title: data.title || '',
-      date: data.date ? new Date(data.date).toLocaleDateString() : '',
+      date: data.date ? new Date(data.date).toLocaleDateString('es-ES', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }) : '',
       description: data.description || '',
       thumbnail: data.thumbnail || null,
       tags: tags,
+      category: data.category || null,
+      readingTime,
     };
   } catch (error) {
     console.error(`Error al leer el artículo ${slug}:`, error);
@@ -142,6 +231,8 @@ async function getPostBySlug(slug) {
       description: '',
       thumbnail: null,
       tags: [],
+      category: null,
+      readingTime: '',
     };
   }
 }

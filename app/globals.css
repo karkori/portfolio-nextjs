@@ -10,6 +10,18 @@
     /* Background/foreground */
     --background: oklch(0.98 0 0); /* near white */
     --foreground: oklch(0.24 0.02 281.02); /* dark gray */
+    
+    /* Colores para código */
+    --code-bg: #f5f6f7;
+    --code-text: #24292e; 
+    --code-border: #e1e4e8;
+    --code-comment: #6a737d;
+    --code-keyword: #d73a49;
+    --code-function: #6f42c1;
+    --code-string: #032f62;
+    --code-number: #005cc5;
+    --code-variable: #e36209;
+    --code-tag: #22863a;
   }
 
   .dark {
@@ -20,6 +32,18 @@
     /* Background/foreground */
     --background: oklch(0.12 0.01 281.02); /* very dark gray */
     --foreground: oklch(0.95 0 0); /* near white */
+    
+    /* Colores para código en modo oscuro */
+    --code-bg: #161b22;
+    --code-text: #c9d1d9;
+    --code-border: #30363d;
+    --code-comment: #8b949e;
+    --code-keyword: #ff7b72;
+    --code-function: #d2a8ff;
+    --code-string: #a5d6ff;
+    --code-number: #79c0ff;
+    --code-variable: #ffa657;
+    --code-tag: #7ee787;
   }
 }
 
@@ -76,6 +100,201 @@
   .dark .prose em {
     color: var(--secondary) !important;
   }
+  
+  /* Estilos mejorados para código */
+  .prose pre {
+    position: relative;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    background-color: var(--code-bg);
+    border: 1px solid var(--code-border);
+    color: var(--code-text);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Estilos para código en línea */
+  .prose :not(pre) > code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.875em;
+    font-weight: 500;
+    color: var(--code-keyword);
+    background-color: var(--code-bg);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25em;
+    white-space: nowrap;
+    border: 1px solid var(--code-border);
+  }
+  
+  /* Encabezados con estilo mejorado */
+  .prose h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+    position: relative;
+  }
+  
+  .prose h2::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 3rem;
+    height: 2px;
+    background: linear-gradient(90deg, #0ea5e9, #14b8a6);
+  }
+  
+  .prose h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--secondary);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Listas con íconos y mejor espaciado */
+  .prose ul {
+    list-style: none;
+    padding-left: 1.5rem;
+  }
+  
+  .prose ul li {
+    position: relative;
+    margin-bottom: 0.75rem;
+  }
+  
+  .prose ul li::before {
+    content: "•";
+    position: absolute;
+    left: -1.25rem;
+    color: #14b8a6;
+    font-weight: bold;
+    font-size: 1.25em;
+  }
+  
+  /* Estilo para bloques de información o nota */
+  .prose blockquote {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+    border-left: 4px solid #14b8a6;
+    background-color: #f8fafc;
+    border-radius: 0 0.5rem 0.5rem 0;
+    font-style: normal;
+    color: #334155;
+  }
+  
+  .dark .prose blockquote {
+    background-color: #1e293b;
+    color: #e2e8f0;
+  }
+  
+  .prose blockquote p {
+    margin: 0;
+  }
+  
+  /* Estilo para tablas */
+  .prose table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2rem 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    text-align: left;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
+  
+  .prose thead {
+    background-color: #f1f5f9;
+    color: #334155;
+    font-weight: 600;
+  }
+  
+  .dark .prose thead {
+    background-color: #334155;
+    color: #f1f5f9;
+  }
+  
+  .prose th {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .prose td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .dark .prose td, .dark .prose th {
+    border-color: #475569;
+  }
+  
+  .prose tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  /* Enlace de ancla para encabezados */
+  .prose h2 a, .prose h3 a {
+    text-decoration: none;
+    position: relative;
+  }
+  
+  .prose h2 a:hover::after, .prose h3 a:hover::after {
+    content: "#";
+    position: absolute;
+    left: -1.5rem;
+    color: #94a3b8;
+    font-weight: normal;
+  }
+  
+  /* Estilo para resaltar código de lenguajes específicos */
+  .prose .language-java {
+    color: var(--code-text);
+  }
+  
+  .prose .language-java .keyword {
+    color: var(--code-keyword);
+  }
+  
+  .prose .language-java .string {
+    color: var(--code-string);
+  }
+  
+  .prose .language-java .function {
+    color: var(--code-function);
+  }
+  
+  .prose .language-java .comment {
+    color: var(--code-comment);
+    font-style: italic;
+  }
+  
+  /* Etiqueta de lenguaje en bloques de código */
+  .prose pre::before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    background-color: #14b8a6;
+    border-bottom-left-radius: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
 }
 
 @layer utilities {
@@ -109,5 +328,26 @@
 
   [popover]:starting {
     display: block;
+  }
+  
+  /* Utilidades para elementos técnicos */
+  .tech-badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300;
+  }
+  
+  .code-filename {
+    @apply block text-sm font-mono text-gray-500 dark:text-gray-400 mb-2 pb-2 border-b border-gray-200 dark:border-gray-700;
+  }
+  
+  .tech-note {
+    @apply p-4 my-6 rounded-lg bg-amber-50 border-l-4 border-amber-500 text-amber-800 dark:bg-amber-950 dark:text-amber-200 dark:border-amber-600;
+  }
+  
+  .tech-tip {
+    @apply p-4 my-6 rounded-lg bg-emerald-50 border-l-4 border-emerald-500 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-200 dark:border-emerald-600;
+  }
+  
+  .tech-warning {
+    @apply p-4 my-6 rounded-lg bg-red-50 border-l-4 border-red-500 text-red-800 dark:bg-red-950 dark:text-red-200 dark:border-red-600;
   }
 }
