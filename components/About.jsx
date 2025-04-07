@@ -32,7 +32,7 @@ const About = () => {
             <div className="space-y-4 mt-8">
               <div className="flex items-start">
                 <svg
-                  className="w-5 h-5 text-teal-500 mt-1 mr-3"
+                  className="w-6 h-6 md:w-5 md:h-5 text-teal-500 mt-1 mr-3 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -50,7 +50,7 @@ const About = () => {
               </div>
               <div className="flex items-start">
                 <svg
-                  className="w-5 h-5 text-teal-500 mt-1 mr-3"
+                  className="w-6 h-6 md:w-5 md:h-5 text-teal-500 mt-1 mr-3 flex-shrink-0"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
