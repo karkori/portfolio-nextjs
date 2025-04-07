@@ -6,6 +6,8 @@ import html from 'remark-html';
 import Image from 'next/image';
 import Link from 'next/link';
 import CodeCopyButton from '@/components/CodeCopyButton';
+import PrismHighlight from '@/components/PrismHighlight';
+import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
   const postsDirectory = path.join(process.cwd(), 'content/blog');
@@ -25,6 +27,11 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPost({ params }) {
+  // Asegurarnos de que params está disponible antes de desestructurarlo
+  if (!params) {
+    return notFound();
+  }
+  
   const { slug } = params;
   const post = await getPostBySlug(slug);
   
@@ -115,7 +122,13 @@ export default async function BlogPost({ params }) {
         
         {/* Contenido del artículo con estilo específico para listas */}
         <div className="article-content">
-          <CodeCopyButton />
+          {/* Los componentes del lado del cliente envueltos en divs separados para evitar problemas de hidratación */}
+          <div id="code-copy-button-container">
+            <CodeCopyButton />
+          </div>
+          <div id="prism-highlight-container">
+            <PrismHighlight />
+          </div>
           <div 
             className="prose prose-lg max-w-none dark:prose-invert article-content"
             dangerouslySetInnerHTML={{ __html: post.contentHtml }}
@@ -187,8 +200,13 @@ async function getPostBySlug(slug) {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
     
-    // Convertir Markdown a HTML
-    const processedContent = await remark().use(html).process(content);
+    // Usamos remark-html para procesar el markdown de manera más simple
+    // Volveremos a una implementación más compleja con resaltado de sintaxis
+    // después de asegurarnos de que todo funciona correctamente
+    const processedContent = await remark()
+      .use(html)
+      .process(content);
+    
     const contentHtml = processedContent.toString();
 
     // Convertir las etiquetas a un array si es una cadena

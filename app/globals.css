@@ -629,6 +629,7 @@
   }
 
   /* Estilos específicos para las listas en el artículo de Spring Boot */
+
 }
 
 @layer utilities {
@@ -744,3 +745,249 @@
     border-left-color: #ef4444;
   }
 }
+
+/* Estilos para Prism.js */
+/* Tema personalizado para Prism.js - Compatible con modo oscuro y claro */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: 'Fira Code', 'Roboto Mono', monospace;
+  font-size: 0.85rem;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  tab-size: 2;
+  hyphens: none;
+  border-radius: 0.5rem;
+}
+
+.dark code[class*="language-"],
+.dark pre[class*="language-"] {
+  color: #e3e3e3;
+}
+
+pre[class*="language-"] {
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  overflow: auto;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  position: relative;
+}
+
+.dark pre[class*="language-"] {
+  background-color: #0f172a;
+  border-color: #1e293b;
+}
+
+/* Tokens en tema claro */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.token.namespace {
+  opacity: 0.8;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+  color: #0550ae;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin {
+  color: #0a3069;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.token.variable,
+.token.punctuation {
+  color: #64748b;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function {
+  color: #8250df;
+}
+
+.token.keyword {
+  color: #cf222e;
+}
+
+.token.regex,
+.token.important {
+  color: #953800;
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+/* Tokens en modo oscuro */
+.dark .token.comment,
+.dark .token.prolog,
+.dark .token.doctype,
+.dark .token.cdata {
+  color: #8b949e;
+}
+
+.dark .token.property,
+.dark .token.tag,
+.dark .token.boolean,
+.dark .token.number,
+.dark .token.constant,
+.dark .token.symbol {
+  color: #79c0ff;
+}
+
+.dark .token.selector,
+.dark .token.attr-name,
+.dark .token.string,
+.dark .token.char,
+.dark .token.builtin {
+  color: #a5d6ff;
+}
+
+.dark .token.operator,
+.dark .token.entity,
+.dark .token.url,
+.dark .language-css .token.string,
+.dark .token.variable,
+.dark .token.punctuation {
+  color: #94a3b8;
+}
+
+.dark .token.atrule,
+.dark .token.attr-value,
+.dark .token.function {
+  color: #d2a8ff;
+}
+
+.dark .token.keyword {
+  color: #ff7b72;
+}
+
+.dark .token.regex,
+.dark .token.important {
+  color: #ffa657;
+}
+
+/* Números de línea */
+pre.line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+  position: relative;
+  white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 1.25rem;
+  font-size: 100%;
+  left: 0;
+  width: 3em;
+  letter-spacing: -1px;
+  border-right: 1px solid #e2e8f0;
+  user-select: none;
+}
+
+.dark .line-numbers .line-numbers-rows {
+  border-right-color: #1e293b;
+}
+
+.line-numbers-rows > span {
+  display: block;
+  counter-increment: linenumber;
+  color: #64748b;
+}
+
+.dark .line-numbers-rows > span {
+  color: #94a3b8;
+}
+
+.line-numbers-rows > span:before {
+  content: counter(linenumber);
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}
+
+/* Botón de copiar (nuestro componente personalizado) */
+.code-copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.25rem;
+  background-color: rgba(30, 41, 59, 0.5);
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  z-index: 50;
+}
+
+.dark .code-copy-button {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.code-copy-button:hover {
+  opacity: 1;
+  background-color: rgba(30, 41, 59, 0.7);
+}
+
+.dark .code-copy-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.code-copy-button svg {
+  width: 1rem;
+  height: 1rem;
+  color: white;
+}
+
+.code-copy-button .check-icon {
+  color: #10b981;
+}
+
+/* Fin de estilos para Prism.js */
+
+/* Estilos específicos para las listas en el artículo de Spring Boot */
