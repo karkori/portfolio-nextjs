@@ -2,8 +2,9 @@
 title: Creando microservicios con Spring Boot
 date: 2025-04-07T12:30:00.000Z
 thumbnail: /images/blog/spring-boot.png
-description: Guía práctica para desarrollar microservicios con Spring Boot en 2025 sin complicaciones.
-category: Desarrollo Backend
+description: Guía práctica para desarrollar microservicios con Spring Boot en
+  2025 sin complicaciones.
+category: Backend
 tags:
   - java
   - spring
@@ -20,32 +21,32 @@ La semana pasada tuve que montar un pequeño servicio para un cliente, y quiero 
 
 Antes de nada, asegúrate de tener instalado:
 
-- Java 17 o superior (yo uso Java 21)
-- Maven o Gradle (personalmente prefiero Gradle)
-- Tu IDE favorito (IntelliJ IDEA, Eclipse, VS Code...)
+* Java 17 o superior (yo uso Java 21)
+* Maven o Gradle (personalmente prefiero Gradle)
+* Tu IDE favorito (IntelliJ IDEA, Eclipse, VS Code...)
 
 ## Generando el proyecto base
 
 Lo primero es crear la estructura del proyecto. Aunque puedes hacerlo manualmente, Spring Initializr es tu mejor amigo aquí:
 
-1. Ve a [https://start.spring.io](https://start.spring.io)
+1. Ve a <https://start.spring.io>
 2. Configura el proyecto:
-   - **Project**: Gradle (o Maven si lo prefieres)
-   - **Language**: Java
-   - **Spring Boot**: 3.2.x
-   - **Group**: com.tuempresa (usa tu dominio invertido)
-   - **Artifact**: mi-servicio (este será el nombre de tu proyecto)
-   - **Packaging**: Jar
-   - **Java**: 17 (o superior)
 
+   * **Project**: Gradle (o Maven si lo prefieres)
+   * **Language**: Java
+   * **Spring Boot**: 3.2.x
+   * **Group**: com.tuempresa (usa tu dominio invertido)
+   * **Artifact**: mi-servicio (este será el nombre de tu proyecto)
+   * **Packaging**: Jar
+   * **Java**: 17 (o superior)
 3. Añade dependencias (las básicas para un microservicio):
-   - Spring Web
-   - Spring Data JPA
-   - H2 Database (para desarrollo)
-   - Validation
-   - Spring Boot Actuator
-   - Lombok (opcional, pero ahorra mucho código)
 
+   * Spring Web
+   * Spring Data JPA
+   * H2 Database (para desarrollo)
+   * Validation
+   * Spring Boot Actuator
+   * Lombok (opcional, pero ahorra mucho código)
 4. Haz clic en "GENERATE" y descarga el ZIP.
 
 ## Estructura del proyecto
@@ -330,13 +331,13 @@ Y listo, tienes tu microservicio corriendo en http://localhost:8081.
 
 Puedes usar Postman, cURL o cualquier cliente HTTP para probar los endpoints:
 
-- `GET /api/productos`: Obtener todos los productos
-- `GET /api/productos/disponibles`: Solo los disponibles
-- `GET /api/productos/1`: Obtener producto con ID 1
-- `POST /api/productos`: Crear un nuevo producto
-- `PUT /api/productos/1`: Actualizar el producto con ID 1
-- `DELETE /api/productos/1`: Eliminar el producto con ID 1
-- `GET /api/productos/buscar?nombre=laptop`: Buscar productos por nombre
+* `GET /api/productos`: Obtener todos los productos
+* `GET /api/productos/disponibles`: Solo los disponibles
+* `GET /api/productos/1`: Obtener producto con ID 1
+* `POST /api/productos`: Crear un nuevo producto
+* `PUT /api/productos/1`: Actualizar el producto con ID 1
+* `DELETE /api/productos/1`: Eliminar el producto con ID 1
+* `GET /api/productos/buscar?nombre=laptop`: Buscar productos por nombre
 
 ## Observaciones personales
 
@@ -348,9 +349,9 @@ Después de implementar esto, me di cuenta de varias cosas:
 
 Pero también hay aspectos a considerar:
 
-- En microservicios reales, necesitarás configurar descubrimiento de servicios (Eureka, Consul).
-- La seguridad es crítica (Spring Security, OAuth2/JWT).
-- En producción, querrás una base de datos real y no H2 en memoria.
+* En microservicios reales, necesitarás configurar descubrimiento de servicios (Eureka, Consul).
+* La seguridad es crítica (Spring Security, OAuth2/JWT).
+* En producción, querrás una base de datos real y no H2 en memoria.
 
 En próximos artículos veremos cómo desplegar este microservicio en contenedores Docker y cómo configurarlo para un entorno de producción robusto.
 

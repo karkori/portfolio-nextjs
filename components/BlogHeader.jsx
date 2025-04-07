@@ -52,9 +52,6 @@ const BlogHeader = () => {
                 {category.title}
               </Link>
             ))}
-            <Link href="/" className="text-secondary hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors">
-              Portfolio
-            </Link>
           </div>
 
           <div className="flex items-center">

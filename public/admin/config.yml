@@ -21,6 +21,6 @@ collections:
       - {label: "Fecha de Publicación", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: true}
       - {label: "Imagen de Portada", name: "thumbnail", widget: "image"}
       - {label: "Descripción", name: "description", widget: "text"}
-      - {label: "Categoría", name: "category", widget: "select", options: ["Desarrollo Web", "JavaScript", "React", "Next.js", "Diseño", "Otros"]}
+      - {label: "Categoría", name: "category", widget: "select", options: ["Backend", "Frontend", "DevOps", "Dev Tools", "Otros"]}
       - {label: "Contenido", name: "body", widget: "markdown"}
       - {label: "Etiquetas", name: "tags", widget: "list"}
