@@ -1,7 +1,7 @@
 # Makefile para el proyecto tailwind-v4-guide-portfolio
 
 # Variables
-NPM := npm
+NPM := bun
 NPM_RUN := $(NPM) run
 PYTHON := python
 
@@ -50,3 +50,7 @@ update:
 	@echo "Actualizando dependencias..."
 	$(NPM) update
 	$(NPM) outdated
+
+proxy:
+	@echo "Desplegando proxy para Decap CMS..."
+	npx netlify-cms-proxy-server

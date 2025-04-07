@@ -7,22 +7,26 @@ import { blogCategories } from '@/lib/data';
 
 export default async function Blog() {
   const posts = await getPosts();
+  // Verificar si estamos en desarrollo
+  const isDevelopment = process.env.NODE_ENV === 'development';
   
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-secondary">Mi Blog</h1>
-      
-      {/* Categorías en vista móvil */}
-      <div className="flex overflow-x-auto pb-4 mb-6 md:hidden">
-        {blogCategories.map((category, index) => (
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
+        <h1 className="text-3xl font-bold text-secondary mb-4 md:mb-0">Mi Blog</h1>
+        
+        {/* Botón para crear un nuevo artículo (visible solo en desarrollo) */}
+        {isDevelopment && (
           <Link 
-            key={index}
-            href={`/blog/category/${category.slug}`}
-            className="flex-shrink-0 px-4 py-2 mr-2 rounded-full bg-gray-100 text-gray-800 hover:bg-teal-500 hover:text-white dark:bg-gray-800 dark:text-secondary dark:hover:bg-teal-600"
+            href="/admin" 
+            className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-teal-500 to-teal-700 hover:from-teal-600 hover:to-teal-800 text-white font-medium rounded-lg transition-all duration-200"
           >
-            {category.title}
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Administrar contenido
           </Link>
-        ))}
+        )}
       </div>
       
       {posts.length === 0 ? (
@@ -31,7 +35,7 @@ export default async function Blog() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post) => (
+          {posts.map((post, index) => (
             <div key={post.slug} className="h-full">
               <div className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex flex-col h-full">
                 <Link href={`/blog/${post.slug}`} className="block group">
@@ -41,6 +45,9 @@ export default async function Blog() {
                         src={post.thumbnail} 
                         alt={post.title}
                         fill
+                        // Dar prioridad a las primeras imágenes (las más propensas a ser LCP)
+                        priority={index < 3}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         style={{ objectFit: 'cover' }}
                         className="transition-transform duration-300 group-hover:scale-105"
                       />

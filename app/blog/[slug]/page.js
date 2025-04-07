@@ -47,24 +47,63 @@ export default async function BlogPost({ params }) {
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <Link 
-          href="/blog" 
-          className="inline-flex items-center text-teal-600 hover:text-teal-800 dark:text-teal-400 dark:hover:text-teal-300 transition-colors duration-200 mb-6 group"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 group-hover:-translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          Volver a todos los artículos
-        </Link>
-        
-        {/* Categoría */}
-        {post.category && (
-          <div className="mb-4">
-            <span className="inline-block bg-gradient-to-r from-teal-500 to-teal-700 text-white text-sm px-3 py-1 rounded-full font-medium">
-              {post.category}
-            </span>
+        {/* Breadcrumbs y navegación mejorada */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between flex-wrap gap-3">
+            <nav className="flex" aria-label="Breadcrumb">
+              <ol className="inline-flex items-center space-x-1 md:space-x-3">
+                <li className="inline-flex items-center">
+                  <Link href="/" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-teal-600 dark:text-gray-400 dark:hover:text-teal-400">
+                    <svg className="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                    </svg>
+                    Inicio
+                  </Link>
+                </li>
+                <li>
+                  <div className="flex items-center">
+                    <svg className="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
+                    </svg>
+                    <Link href="/blog" className="ml-1 text-sm font-medium text-gray-700 hover:text-teal-600 dark:text-gray-400 dark:hover:text-teal-400">Blog</Link>
+                  </div>
+                </li>
+                <li aria-current="page">
+                  <div className="flex items-center">
+                    <svg className="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
+                    </svg>
+                    <span className="ml-1 text-sm font-medium text-gray-500 dark:text-gray-400 truncate max-w-[150px] md:max-w-[250px]">{post.title}</span>
+                  </div>
+                </li>
+              </ol>
+            </nav>
+
+            <div className="flex items-center space-x-2">
+              <Link 
+                href="/blog" 
+                className="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-lg border border-teal-500 text-teal-600 hover:bg-teal-50 dark:text-teal-400 dark:hover:bg-teal-950/40 transition-all duration-200 group"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 group-hover:-translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span>Volver a artículos</span>
+              </Link>
+              
+              {post.category && (
+                <Link
+                  href={`/blog/category/${post.category.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="inline-flex items-center px-3 py-1.5 text-sm font-medium rounded-lg bg-gradient-to-r from-teal-500 to-teal-700 text-white hover:from-teal-600 hover:to-teal-800 transition-all duration-200"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
+                  {post.category}
+                </Link>
+              )}
+            </div>
           </div>
-        )}
+        </div>
         
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-secondary bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300">
           {post.title}
@@ -95,6 +134,7 @@ export default async function BlogPost({ params }) {
               alt={post.title}
               fill
               priority
+              sizes="(max-width: 768px) 100vw, 1024px"
               style={{ objectFit: 'cover' }}
               className="transition-transform duration-500 hover:scale-105"
             />
