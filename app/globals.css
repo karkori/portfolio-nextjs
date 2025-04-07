@@ -456,6 +456,37 @@
     display: block !important;
     counter-increment: none !important;
   }
+
+  /* Estilos para listas anidadas */
+  .article-content ol ul,
+  .article-content li ul {
+    list-style-type: none !important;
+    counter-reset: none !important;
+    padding-left: 1.5rem !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .article-content ol ul li,
+  .article-content li ul li {
+    counter-increment: none !important;
+    position: relative !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .article-content ol ul li::before,
+  .article-content li ul li::before {
+    content: "" !important;
+    position: absolute !important;
+    left: -1.25rem !important;
+    top: 0.6em !important;
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background-color: #14b8a6 !important;
+    box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2) !important;
+    transform: translateY(-50%) !important;
+  }
 }
 
 @layer utilities {
