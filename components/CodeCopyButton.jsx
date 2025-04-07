@@ -10,6 +10,11 @@ export default function CodeCopyButton() {
       const codeBlocks = document.querySelectorAll('.article-content pre');
       
       codeBlocks.forEach(codeBlock => {
+        // Evitar duplicados si ya tiene un botón de copiar
+        if (codeBlock.querySelector('.code-copy-button')) {
+          return;
+        }
+        
         // Crear el botón de copia con SVG profesional
         const copyButton = document.createElement('button');
         copyButton.className = 'code-copy-button';
@@ -77,9 +82,21 @@ export default function CodeCopyButton() {
         
         // Añadir el evento de clic al botón
         copyButton.addEventListener('click', () => {
-          // Obtiene el código (eliminando el posible botón/elementos adicionales)
-          const codeElement = codeBlock.querySelector('code');
-          const code = codeElement ? codeElement.innerText : codeBlock.innerText;
+          // Para rehype-pretty-code, necesitamos extraer todas las líneas de texto
+          // porque el código está distribuido en múltiples elementos [data-line]
+          const codeLines = codeBlock.querySelectorAll('[data-line]');
+          let code = '';
+          
+          if (codeLines && codeLines.length > 0) {
+            // Concatenar el texto de cada línea
+            codeLines.forEach(line => {
+              code += line.textContent + '\n';
+            });
+          } else {
+            // Fallback al método antiguo
+            const codeElement = codeBlock.querySelector('code');
+            code = codeElement ? codeElement.innerText : codeBlock.innerText;
+          }
           
           // Copia al portapapeles
           navigator.clipboard.writeText(code).then(() => {
@@ -107,6 +124,9 @@ export default function CodeCopyButton() {
       addCopyButtons();
     } else {
       window.addEventListener('load', addCopyButtons);
+      // También intentar ejecutarlo después de un pequeño retraso para asegurar que
+      // el contenido dinámico se ha renderizado
+      setTimeout(addCopyButtons, 1000);
       return () => window.removeEventListener('load', addCopyButtons);
     }
   }, []);

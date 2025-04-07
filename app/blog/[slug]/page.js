@@ -1,12 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeStringify from 'rehype-stringify';
 import Image from 'next/image';
 import Link from 'next/link';
 import CodeCopyButton from '@/components/CodeCopyButton';
-import PrismHighlight from '@/components/PrismHighlight';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -27,6 +29,9 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPost({ params }) {
+  // En Next.js 15.2.4, debemos esperar (await) params antes de desestructurarlo
+  params = await params;
+  
   // Asegurarnos de que params está disponible antes de desestructurarlo
   if (!params) {
     return notFound();
@@ -122,12 +127,9 @@ export default async function BlogPost({ params }) {
         
         {/* Contenido del artículo con estilo específico para listas */}
         <div className="article-content">
-          {/* Los componentes del lado del cliente envueltos en divs separados para evitar problemas de hidratación */}
+          {/* Componente de botón de copiar */}
           <div id="code-copy-button-container">
             <CodeCopyButton />
-          </div>
-          <div id="prism-highlight-container">
-            <PrismHighlight />
           </div>
           <div 
             className="prose prose-lg max-w-none dark:prose-invert article-content"
@@ -200,14 +202,33 @@ async function getPostBySlug(slug) {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
     
-    // Usamos remark-html para procesar el markdown de manera más simple
-    // Volveremos a una implementación más compleja con resaltado de sintaxis
-    // después de asegurarnos de que todo funciona correctamente
-    const processedContent = await remark()
-      .use(html)
+    // Configuración para rehype-pretty-code
+    const options = {
+      // Usa tema oscuro por defecto, asegurando compatibilidad con modo claro/oscuro
+      theme: 'github-dark',
+      keepBackground: false,
+      // Mostrar números de línea
+      onVisitLine(node) {
+        // Añadir data-line para cada línea
+        if (!node.properties.dataLine) {
+          node.properties.dataLine = true;
+        }
+      },
+      // Resaltar líneas específicas (opcional)
+      onVisitHighlightedLine(node) {
+        node.properties.className = [...(node.properties.className || []), 'highlighted'];
+      },
+    };
+    
+    // Procesar el markdown con rehype-pretty-code
+    const result = await unified()
+      .use(remarkParse)
+      .use(remarkRehype)
+      .use(rehypePrettyCode, options)
+      .use(rehypeStringify)
       .process(content);
     
-    const contentHtml = processedContent.toString();
+    const contentHtml = result.toString();
 
     // Convertir las etiquetas a un array si es una cadena
     let tags = data.tags || [];

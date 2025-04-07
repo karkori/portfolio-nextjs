@@ -550,83 +550,89 @@
 
   /* Mejoras para los bloques de código */
   .article-content pre {
-    position: relative !important;
-    border-radius: 0.5rem !important;
-    background-color: #f8fafc !important;
-    border: 1px solid #e2e8f0 !important;
-    overflow: hidden !important;
-    margin: 1.5rem 0 !important;
+    position: relative;
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+    background-color: #0d1117;
+    border-radius: 0.5rem;
+    overflow: auto;
   }
 
   .dark .article-content pre {
-    background-color: #0f172a !important;
-    border-color: #1e293b !important;
+    background-color: #0d1117;
+    border-color: #1e293b;
   }
 
-  /* .article-content pre::before {
-    content: attr(data-language);
-    position: absolute !important;
-    top: 0 !important;
-    right: 0 !important;
-    padding: 0.25rem 0.75rem !important;
-    font-size: 0.75rem !important;
-    font-weight: 600 !important;
-    color: white !important;
-    background-color: #0284c7 !important; 
-    border-bottom-left-radius: 0.5rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.05em !important;
-    z-index: 10 !important;
-  } */
-
-  /* Para el botón de copiar (ahora será solo un área, el SVG lo pondremos en el componente) */
-  .article-content pre::after {
-    content: "" !important;
-    position: absolute !important;
-    top: 0.5rem !important;
-    right: 0.5rem !important;
-    width: 2rem !important;
-    height: 2rem !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    border-radius: 0.25rem !important;
-    cursor: pointer !important;
-    opacity: 0 !important; /* Lo hacemos completamente transparente, el SVG lo reemplazará */
-    transition: all 0.2s ease !important;
-    z-index: 20 !important;
+  .article-content pre > code {
+    display: grid;
+    counter-reset: line;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    font-family: 'Fira Code', 'Roboto Mono', Menlo, Monaco, Consolas, monospace;
   }
 
-  .article-content pre:hover::after {
-    opacity: 0 !important; /* También invisible en hover */
+  .article-content pre > code > [data-line] {
+    padding: 0 1rem 0 3.8rem;
+    position: relative;
   }
 
-  /* Eliminamos cualquier otro elemento que pueda tener color verde */
-  .article-content pre *::before,
-  .article-content pre *::after {
-    background-color: transparent !important;
-    border-color: transparent !important;
+  .article-content pre > code > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    position: absolute;
+    left: 0;
+    width: 3rem;
+    text-align: right;
+    color: #606672;
+    padding-right: 0.8rem;
   }
 
-  .article-content pre code {
-    display: block !important;
-    padding: 1.25rem !important;
-    overflow-x: auto !important;
-    font-family: 'Fira Code', 'Roboto Mono', Monaco, Consolas, monospace !important;
-    font-size: 0.85rem !important;
-    line-height: 1.5 !important;
+  .article-content pre > code > .highlighted {
+    background-color: rgba(200, 200, 255, 0.1);
+    border-left: 2px solid #3d85c6;
   }
 
-  /* Indicador de número de línea */
-  .article-content pre code .line-number {
-    display: inline-block !important;
-    width: 1.5rem !important;
-    text-align: right !important;
-    color: #94a3b8 !important;
-    margin-right: 1rem !important;
-    user-select: none !important;
+  .article-content pre > code .word {
+    background-color: rgba(200, 200, 255, 0.15);
+    padding: 0.15rem;
+    border-radius: 0.25rem;
   }
+
+  /* Para modo claro */
+  :root:not(.dark) .article-content pre {
+    background-color: #f6f8fa;
+    border: 1px solid #e5e7eb;
+  }
+
+  :root:not(.dark) .article-content pre > code > [data-line]::before {
+    color: #8792a2;
+  }
+
+  :root:not(.dark) .article-content pre > code > .highlighted {
+    background-color: rgba(0, 0, 200, 0.05);
+    border-left: 2px solid #3d85c6;
+  }
+
+  /* Estilos en línea para código */
+  .article-content p > code,
+  .article-content li > code,
+  .article-content h2 > code,
+  .article-content h3 > code {
+    background-color: rgba(175, 184, 193, 0.2);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Fira Code', 'Roboto Mono', monospace;
+    font-size: 0.9em;
+  }
+
+  .dark .article-content p > code,
+  .dark .article-content li > code,
+  .dark .article-content h2 > code,
+  .dark .article-content h3 > code {
+    background-color: rgba(99, 110, 123, 0.4);
+  }
+
+  /* Fin de estilos para rehype-pretty-code */
 
   /* Estilos específicos para las listas en el artículo de Spring Boot */
 
@@ -746,11 +752,11 @@
   }
 }
 
-/* Estilos para Prism.js */
-/* Tema personalizado para Prism.js - Compatible con modo oscuro y claro */
+/* Estilos simplificados para Prism.js */
+/* Tema limpio y plano para código */
 code[class*="language-"],
 pre[class*="language-"] {
-  color: #333;
+  color: #383a42;
   background: none;
   font-family: 'Fira Code', 'Roboto Mono', monospace;
   font-size: 0.85rem;
@@ -763,33 +769,35 @@ pre[class*="language-"] {
   tab-size: 2;
   hyphens: none;
   border-radius: 0.5rem;
+  text-shadow: none; /* Eliminar cualquier sombra de texto */
 }
 
 .dark code[class*="language-"],
 .dark pre[class*="language-"] {
-  color: #e3e3e3;
+  color: #abb2bf;
+  text-shadow: none; /* Eliminar cualquier sombra de texto */
 }
 
 pre[class*="language-"] {
   padding: 1.25rem;
   margin: 1.5rem 0;
   overflow: auto;
-  background-color: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
   position: relative;
 }
 
 .dark pre[class*="language-"] {
-  background-color: #0f172a;
-  border-color: #1e293b;
+  background-color: #1a1b26;
+  border-color: #2c2e3b;
 }
 
-/* Tokens en tema claro */
+/* Tokens simplificados en tema claro */
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #6b7280;
+  color: #777c85;
   font-style: italic;
 }
 
@@ -803,7 +811,7 @@ pre[class*="language-"] {
 .token.number,
 .token.constant,
 .token.symbol {
-  color: #0550ae;
+  color: #4078f2;
 }
 
 .token.selector,
@@ -811,7 +819,7 @@ pre[class*="language-"] {
 .token.string,
 .token.char,
 .token.builtin {
-  color: #0a3069;
+  color: #50a14f;
 }
 
 .token.operator,
@@ -820,43 +828,30 @@ pre[class*="language-"] {
 .language-css .token.string,
 .token.variable,
 .token.punctuation {
-  color: #64748b;
+  color: #383a42;
 }
 
 .token.atrule,
 .token.attr-value,
 .token.function {
-  color: #8250df;
+  color: #a626a4;
 }
 
 .token.keyword {
-  color: #cf222e;
+  color: #e45649;
 }
 
 .token.regex,
 .token.important {
-  color: #953800;
+  color: #c18401;
 }
 
-.token.important,
-.token.bold {
-  font-weight: bold;
-}
-
-.token.italic {
-  font-style: italic;
-}
-
-.token.entity {
-  cursor: help;
-}
-
-/* Tokens en modo oscuro */
+/* Tokens simplificados en tema oscuro */
 .dark .token.comment,
 .dark .token.prolog,
 .dark .token.doctype,
 .dark .token.cdata {
-  color: #8b949e;
+  color: #7f848e;
 }
 
 .dark .token.property,
@@ -865,7 +860,7 @@ pre[class*="language-"] {
 .dark .token.number,
 .dark .token.constant,
 .dark .token.symbol {
-  color: #79c0ff;
+  color: #61afef;
 }
 
 .dark .token.selector,
@@ -873,7 +868,7 @@ pre[class*="language-"] {
 .dark .token.string,
 .dark .token.char,
 .dark .token.builtin {
-  color: #a5d6ff;
+  color: #98c379;
 }
 
 .dark .token.operator,
@@ -882,25 +877,25 @@ pre[class*="language-"] {
 .dark .language-css .token.string,
 .dark .token.variable,
 .dark .token.punctuation {
-  color: #94a3b8;
+  color: #abb2bf;
 }
 
 .dark .token.atrule,
 .dark .token.attr-value,
 .dark .token.function {
-  color: #d2a8ff;
+  color: #c678dd;
 }
 
 .dark .token.keyword {
-  color: #ff7b72;
+  color: #e06c75;
 }
 
 .dark .token.regex,
 .dark .token.important {
-  color: #ffa657;
+  color: #e5c07b;
 }
 
-/* Números de línea */
+/* Números de línea - Asegurarnos que sean visibles */
 pre.line-numbers {
   position: relative;
   padding-left: 3.8em;
@@ -915,37 +910,40 @@ pre.line-numbers > code {
 .line-numbers .line-numbers-rows {
   position: absolute;
   pointer-events: none;
-  top: 1.25rem;
+  top: 0;
   font-size: 100%;
-  left: 0;
+  left: -3.8em;
   width: 3em;
   letter-spacing: -1px;
-  border-right: 1px solid #e2e8f0;
+  border-right: 1px solid #dddddd;
   user-select: none;
+  padding-top: 1.25rem;
+  overflow: hidden;
 }
 
 .dark .line-numbers .line-numbers-rows {
-  border-right-color: #1e293b;
+  border-right-color: #2c2e3b;
 }
 
 .line-numbers-rows > span {
   display: block;
   counter-increment: linenumber;
-  color: #64748b;
+  pointer-events: none;
+  padding-right: 0.8em;
+  text-align: right;
+  color: #888;
 }
 
 .dark .line-numbers-rows > span {
-  color: #94a3b8;
+  color: #606670;
 }
 
 .line-numbers-rows > span:before {
   content: counter(linenumber);
   display: block;
-  padding-right: 0.8em;
-  text-align: right;
 }
 
-/* Botón de copiar (nuestro componente personalizado) */
+/* Botón de copiar */
 .code-copy-button {
   position: absolute;
   top: 0.5rem;
@@ -988,6 +986,6 @@ pre.line-numbers > code {
   color: #10b981;
 }
 
-/* Fin de estilos para Prism.js */
+/* Fin de estilos simplificados para Prism.js */
 
 /* Estilos específicos para las listas en el artículo de Spring Boot */
