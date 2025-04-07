@@ -7,24 +7,26 @@ import { blogCategories } from '@/lib/data';
 
 export default async function Blog() {
   const posts = await getPosts();
+  // Verificar si estamos en desarrollo
+  const isDevelopment = process.env.NODE_ENV === 'development';
   
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-secondary">Mi Blog</h1>
-      
-      {/* Categorías */}
-      <div className="mb-6 hidden md:block">
-        <div className="flex flex-wrap gap-2">
-          {blogCategories.map((category, index) => (
-            <Link 
-              key={index}
-              href={`/blog/category/${category.slug}`}
-              className="px-4 py-2 rounded-full bg-gray-100 text-gray-800 hover:bg-teal-500 hover:text-white dark:bg-gray-800 dark:text-secondary dark:hover:bg-teal-600 transition-colors"
-            >
-              {category.title}
-            </Link>
-          ))}
-        </div>
+      <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
+        <h1 className="text-3xl font-bold text-secondary mb-4 md:mb-0">Mi Blog</h1>
+        
+        {/* Botón para crear un nuevo artículo (visible solo en desarrollo) */}
+        {isDevelopment && (
+          <Link 
+            href="/admin" 
+            className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-teal-500 to-teal-700 hover:from-teal-600 hover:to-teal-800 text-white font-medium rounded-lg transition-all duration-200"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Administrar contenido
+          </Link>
+        )}
       </div>
       
       {posts.length === 0 ? (
