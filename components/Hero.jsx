@@ -25,16 +25,30 @@ const Hero = () => {
               Angular and cloud technologies. Specialized in scalable architectures
               and high-performance applications.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="grid grid-cols-1 sm:flex sm:flex-wrap sm:gap-4 gap-3">
               <Link
                 href="#contact"
-                className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg transition-colors"
+                className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg transition-colors flex items-center justify-center"
               >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-5 w-5 mr-2" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" 
+                  />
+                </svg>
                 Contact Me
               </Link>
               <Link
                 href="/blog"
-                className={`bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg transition-colors flex items-center`}
+                className={`bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg transition-colors flex items-center justify-center`}
               >
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -54,7 +68,7 @@ const Hero = () => {
               </Link>
               <Link
                 href="/pdf/Mostapha_Bourarach_CV_Fullstack_03_27_2025.pdf"
-                className={`border border-teal-600 px-6 py-3 rounded-lg transition-colors flex items-center ${
+                className={`border border-teal-600 px-6 py-3 rounded-lg transition-colors flex items-center justify-center ${
                   theme === 'dark' ? 'text-white border-teal-500' : 'text-secondary hover:bg-teal-600/10'
                 }`}
                 target="_blank"
