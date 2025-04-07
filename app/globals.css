@@ -553,14 +553,10 @@
     position: relative;
     margin: 1.5rem 0;
     padding: 1rem 0;
-    background-color: #0d1117;
+    background-color: #0d1117 !important; /* Mantener siempre oscuro */
     border-radius: 0.5rem;
     overflow: auto;
-  }
-
-  .dark .article-content pre {
-    background-color: #0d1117;
-    border-color: #1e293b;
+    color: #e6e6e6 !important; /* Color claro para el texto */
   }
 
   .article-content pre > code {
@@ -569,6 +565,7 @@
     font-size: 0.85rem;
     line-height: 1.5;
     font-family: 'Fira Code', 'Roboto Mono', Menlo, Monaco, Consolas, monospace;
+    color: #e6e6e6 !important; /* Color claro para el texto */
   }
 
   .article-content pre > code > [data-line] {
@@ -598,27 +595,24 @@
     border-radius: 0.25rem;
   }
 
-  /* Para modo claro */
+  /* Eliminar los cambios para modo claro */
   :root:not(.dark) .article-content pre {
-    background-color: #f6f8fa;
-    border: 1px solid #e5e7eb;
+    /* Eliminamos estos estilos para mantener el fondo oscuro */
+    /* background-color: #f6f8fa; */
+    border: 1px solid #1e293b;
   }
 
   :root:not(.dark) .article-content pre > code > [data-line]::before {
-    color: #8792a2;
+    color: #8792a2; /* Mantener este color para los números de línea en modo claro */
   }
 
-  :root:not(.dark) .article-content pre > code > .highlighted {
-    background-color: rgba(0, 0, 200, 0.05);
-    border-left: 2px solid #3d85c6;
-  }
-
-  /* Estilos en línea para código */
+  /* Estilos específicos para los fragmentos de código en línea */
   .article-content p > code,
   .article-content li > code,
   .article-content h2 > code,
   .article-content h3 > code {
-    background-color: rgba(175, 184, 193, 0.2);
+    background-color: rgba(200, 200, 255, 0.1);
+    color: #f06060;
     padding: 0.2rem 0.4rem;
     border-radius: 0.25rem;
     font-family: 'Fira Code', 'Roboto Mono', monospace;
@@ -632,9 +626,20 @@
     background-color: rgba(99, 110, 123, 0.4);
   }
 
-  /* Fin de estilos para rehype-pretty-code */
+  /* Botón de copia siempre visible para todos los temas */
+  .code-copy-button {
+    background-color: rgba(30, 41, 59, 0.7) !important;
+  }
 
-  /* Estilos específicos para las listas en el artículo de Spring Boot */
+  .code-copy-button:hover {
+    background-color: rgba(30, 41, 59, 0.9) !important;
+  }
+
+  .code-copy-button svg {
+    color: white !important;
+  }
+
+  /* Fin de estilos para rehype-pretty-code */
 
 }
 
@@ -760,6 +765,7 @@ pre[class*="language-"] {
   background: none;
   font-family: 'Fira Code', 'Roboto Mono', monospace;
   font-size: 0.85rem;
+  line-height: 1.5;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
@@ -929,7 +935,7 @@ pre.line-numbers > code {
   display: block;
   counter-increment: linenumber;
   pointer-events: none;
-  padding-right: 0.8em;
+  padding-right: 0.8rem;
   text-align: right;
   color: #888;
 }
