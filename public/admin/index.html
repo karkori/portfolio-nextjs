@@ -5,6 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
+    <script>
+        // Script de seguridad: redirecciona si no estamos en localhost
+        (function() {
+            var isLocalhost = window.location.hostname.includes('localhost') || 
+                              window.location.hostname === '127.0.0.1';
+            if (!isLocalhost) {
+                window.location.href = '/';
+            }
+        })();
+    </script>
 </head>
 
 <body>
