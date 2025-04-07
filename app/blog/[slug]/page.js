@@ -5,6 +5,7 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import Image from 'next/image';
 import Link from 'next/link';
+import CodeCopyButton from '@/components/CodeCopyButton';
 
 export async function generateStaticParams() {
   const postsDirectory = path.join(process.cwd(), 'content/blog');
@@ -28,7 +29,7 @@ export default async function BlogPost({ params }) {
   const post = await getPostBySlug(slug);
   
   if (!post) {
-    notFound();
+    return notFound();
   }
 
   return (
@@ -114,6 +115,7 @@ export default async function BlogPost({ params }) {
         
         {/* Contenido del artículo con estilo específico para listas */}
         <div className="article-content">
+          <CodeCopyButton />
           <div 
             className="prose prose-lg max-w-none dark:prose-invert article-content"
             dangerouslySetInnerHTML={{ __html: post.contentHtml }}
