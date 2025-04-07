@@ -573,6 +573,12 @@
     position: relative;
   }
 
+  /* Para fragmentos sin formato específico de lenguaje (sin números de línea) */
+  .article-content pre:not([class*="language-"]) > code:not([class*="language-"]) {
+    padding-left: 1.5rem;
+    display: block; /* Cambiamos a block en lugar de grid para contenido simple */
+  }
+
   .article-content pre > code > [data-line]::before {
     counter-increment: line;
     content: counter(line);
