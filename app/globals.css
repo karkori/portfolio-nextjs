@@ -487,6 +487,68 @@
     box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2) !important;
     transform: translateY(-50%) !important;
   }
+
+  /* Estilos mejorados para enlaces en artículos */
+  .article-content a {
+    color: #0ea5e9 !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    border-bottom: 1.5px solid rgba(14, 165, 233, 0.3) !important;
+    transition: all 0.2s ease-in-out !important;
+    padding-bottom: 1px !important;
+    position: relative !important;
+    background-image: none !important;
+  }
+
+  .article-content a:hover {
+    color: #0284c7 !important;
+    border-bottom-color: #0284c7 !important;
+    background-color: rgba(14, 165, 233, 0.05) !important;
+  }
+
+  .article-content a::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  .article-content a:hover {
+    border-bottom: 1.5px solid #0284c7 !important;
+  }
+
+  .article-content a[href^="http"]:not([href*="mostapha.dev"]) {
+    padding-right: 1.25em !important;
+    position: relative !important;
+  }
+
+  .article-content a[href^="http"]:not([href*="mostapha.dev"])::after {
+    content: "↗" !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 0 !important;
+    font-size: 0.7em !important;
+    line-height: 1.7 !important;
+    opacity: 0.7 !important;
+    display: inline-block !important;
+  }
+
+  .article-content a[href^="/"]:after,
+  .article-content a[href*="mostapha.dev"]:after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .dark .article-content a {
+    color: #38bdf8 !important;
+    border-bottom-color: rgba(56, 189, 248, 0.3) !important;
+  }
+
+  .dark .article-content a:hover {
+    color: #7dd3fc !important;
+    border-bottom-color: #7dd3fc !important;
+    background-color: rgba(56, 189, 248, 0.05) !important;
+  }
+
+  /* Estilos específicos para las listas en el artículo de Spring Boot */
 }
 
 @layer utilities {
