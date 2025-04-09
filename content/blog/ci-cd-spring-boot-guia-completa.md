@@ -1,7 +1,7 @@
 ---
 title: CI/CD para aplicaciones Java/Spring Boot - Guía completa desde cero hasta producción
 date: 2025-04-09T09:30:00.000Z
-thumbnail: /images/blog/ci-cd-spring-boot.png
+thumbnail: /images/blog/ci-cd_springboot.png
 description: Implementa un pipeline de integración y despliegue continuo completo para aplicaciones Spring Boot, desde el desarrollo hasta producción.
 category: DevOps
 tags:
