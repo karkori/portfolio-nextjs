@@ -1,7 +1,7 @@
 ---
 title: Las 10 Herramientas de Desarrollo que Han Revolucionado mi Flujo de Trabajo en 2025
 date: 2025-04-10T11:00:00.000Z
-thumbnail: /images/blog/dev-tools.png
+thumbnail: /images/blog/devtools.png
 description: Descubre las herramientas que han transformado mi productividad como desarrollador y cómo pueden mejorar tu flujo de trabajo diario.
 category: Herramientas
 tags:
