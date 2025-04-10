@@ -45,14 +45,14 @@ const Header = () => {
             </span>
           </Link>
 
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex space-x-4 items-center">
             {headerList.map((item, index) => (
               <Link
                 key={index}
                 href={item.link}
                 className="text-secondary hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors"
               >
-                {item.title}
+                {item.title}  
               </Link>
             ))}
           </div>
