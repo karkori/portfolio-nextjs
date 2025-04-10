@@ -8,8 +8,8 @@ const Hero = () => {
   return (
     <section id="home" className="pb-20 pt-32 bg-third">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-10 md:mb-0 text-secondary">
+        <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="w-full md:w-1/2 text-secondary">
             <div className="flex items-center mb-4">
               <div className="h-1 w-10 bg-teal-500 mr-2"></div>
               <p className="text-teal-500 font-medium">Fullstack Developer</p>
@@ -98,8 +98,7 @@ const Hero = () => {
                 rel="noopener noreferrer"
                 className={`transition-colors ${
                   theme === 'dark' 
-                    ? 'text-white hover:text-teal-400' 
-                    : 'text-gray-700 hover:text-teal-600'
+                    ? 'text-white hover:text-teal-400' : 'text-gray-700 hover:text-teal-600'
                 }`}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -112,8 +111,7 @@ const Hero = () => {
                 rel="noopener noreferrer"
                 className={`transition-colors ${
                   theme === 'dark' 
-                    ? 'text-white hover:text-teal-400' 
-                    : 'text-gray-700 hover:text-teal-600'
+                    ? 'text-white hover:text-teal-400' : 'text-gray-700 hover:text-teal-600'
                 }`}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -122,7 +120,7 @@ const Hero = () => {
               </a>
             </div>
           </div>
-          <div className="md:w-1/2">
+          <div className="w-full md:w-1/2">
             <img
               src="/images/hero-image.jpg"
               alt="Mostapha Bourarach - Fullstack Developer"
