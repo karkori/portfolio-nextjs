@@ -37,7 +37,7 @@ export default async function Blog() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post, index) => (
             <div key={post.slug} className="h-full">
-              <div className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex flex-col h-full">
+              <div className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 bg-gray-50 dark:bg-gray-700 border border-gray-100 dark:border-gray-600 flex flex-col h-full">
                 <Link href={`/blog/${post.slug}`} className="block group">
                   <div className="relative h-48 w-full overflow-hidden">
                     {post.thumbnail && (
@@ -59,13 +59,13 @@ export default async function Blog() {
                   <Link href={`/blog/${post.slug}`} className="block group">
                     <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100 hover:text-teal-600 dark:hover:text-teal-400 transition-colors line-clamp-2">{post.title}</h2>
                   </Link>
-                  <p className="text-gray-700 dark:text-secondary line-clamp-3 mb-4 flex-grow">{post.description}</p>
+                  <p className="text-gray-700 dark:text-gray-300 line-clamp-3 mb-4 flex-grow">{post.description}</p>
                   <div className="mt-auto flex flex-wrap">
                     {post.tags && post.tags.map((tag) => (
                       <Link 
                         key={tag} 
                         href={`/blog/category/${tag}`}
-                        className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:bg-gray-700 dark:text-secondary hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors"
+                        className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:bg-gray-600 dark:text-gray-300 hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors"
                       >
                         #{tag}
                       </Link>
