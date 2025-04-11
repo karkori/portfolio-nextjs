@@ -3,13 +3,13 @@ title: Microservicios con Spring Cloud - Arquitectura completa paso a paso
 date: 2025-04-11T10:00:00.000Z
 thumbnail: /images/blog/spring-cloud-microservices.png
 description: Implementa una arquitectura de microservicios robusta usando Spring Cloud, desde la configuración básica hasta el despliegue en Kubernetes.
-category: Backend
+category: backend
 tags:
   - java
   - spring
   - microservicios
   - spring-cloud
-  - kubernetes
+  - backend
 ---
 ## Mi travesía desde el monolito a los microservicios
 
