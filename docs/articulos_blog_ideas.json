@@ -1,19 +1,10 @@
 {
   "ideas_articulos": [
-    { 
-      "titulo": "Seguridad en aplicaciones Spring Boot - Desde autenticación básica hasta OAuth2 y JWT",
-      "descripcion": "Guía completa sobre cómo implementar di.jiu8l7t.ferentes niveles de seguridad en aplicaciones Spring Boot, desde configuraciones básicas hasta soluciones avanzadas con OAuth2 y JWT.",
-      "categoria": "Backend",
-      "tags": ["java", "spring", "seguridad", "backend", "jwt"],
-      "nivel_dificultad": "Intermedio",
-      "estimacion_visitas": "Muy alta",
-      "estado": "Pendiente"
-    },
     {
       "titulo": "GraphQL con Spring Boot - API modernas y eficientes",
       "descripcion": "Implementación de APIs GraphQL con Spring Boot, ventajas sobre REST, casos de uso prácticos y mejores prácticas de diseño.",
-      "categoria": "API",
-      "tags": ["java", "spring", "graphql", "api", "rest"],
+      "categoria": "Backend",
+      "tags": ["java", "spring", "graphql", "backend", "rest"],
       "nivel_dificultad": "Intermedio",
       "estimacion_visitas": "Alta",
       "estado": "Pendiente"
