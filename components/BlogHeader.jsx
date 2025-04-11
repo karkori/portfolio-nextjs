@@ -24,20 +24,36 @@ const BlogHeader = () => {
     };
   }, []);
 
+  // Definir colores base según el tema
+  const textColor = theme === 'light' ? '#1f2937' : '#ffffff';
+  const hoverColor = '#0d9488'; // teal-500
+
+  // Manejadores de eventos hover
+  const handleMouseEnter = (e) => {
+    e.target.style.color = hoverColor;
+  };
+  
+  const handleMouseLeave = (e) => {
+    e.target.style.color = textColor;
+  };
+
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-primary backdrop-blur-sm shadow-lg py-2" 
-          : "bg-primary py-4"
+          ? "backdrop-blur-sm shadow-lg py-2" 
+          : "py-4"
       }`}
+      style={{
+        backgroundColor: theme === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.95)'
+      }}
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           <Link href="/" className="group relative">
             <span className="text-2xl font-extrabold tracking-tight relative inline-block">
               <span className="text-teal-500">Mostapha</span>
-              <span className="text-gray-900 dark:text-white">.dev</span>
+              <span style={{ color: textColor }}>.dev</span>
               <span className={`absolute -bottom-0.5 left-0 w-0 h-0.5 ${theme === 'dark' ? 'bg-teal-400' : 'bg-indigo-600'} group-hover:w-full transition-all duration-300`}></span>
             </span>
           </Link>
@@ -47,7 +63,10 @@ const BlogHeader = () => {
               <Link
                 key={index}
                 href={`/blog/category/${category.slug}`}
-                className="text-gray-900 hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors font-medium"
+                style={{ color: textColor }}
+                className="transition-colors font-medium"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 {category.title}
               </Link>
@@ -96,8 +115,11 @@ const BlogHeader = () => {
             <div className="block md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center p-2 rounded text-gray-800 dark:text-white hover:text-teal-500 dark:hover:text-teal-400 focus:outline-none"
+                className="flex items-center p-2 rounded focus:outline-none"
                 aria-label="Toggle menu"
+                style={{ color: textColor }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 {!isOpen ? (
                   <svg
@@ -143,7 +165,10 @@ const BlogHeader = () => {
                 <Link
                   key={index}
                   href={`/blog/category/${category.slug}`}
-                  className="text-gray-900 hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors font-medium"
+                  style={{ color: textColor }}
+                  className="transition-colors font-medium"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                   onClick={() => setIsOpen(false)}
                 >
                   {category.title}
@@ -151,7 +176,10 @@ const BlogHeader = () => {
               ))}
               <Link 
                 href="/" 
-                className="text-gray-900 hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors font-medium"
+                style={{ color: textColor }}
+                className="transition-colors font-medium"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
                 onClick={() => setIsOpen(false)}
               >
                 Portfolio
