@@ -1,9 +1,8 @@
+import BlogPostCard from '@/components/BlogPostCard';
 import fs from 'fs';
-import path from 'path';
 import matter from 'gray-matter';
 import Link from 'next/link';
-import Image from 'next/image';
-import { blogCategories } from '@/lib/data';
+import path from 'path';
 
 export default async function Blog() {
   const posts = await getPosts();
@@ -31,49 +30,12 @@ export default async function Blog() {
       
       {posts.length === 0 ? (
         <div className="text-center py-10">
-          <p className="text-xl text-gray-600 dark:text-secondary">No hay artículos publicados todavía.</p>
+          <p className="text-xl text-gray-600 dark:text-gray-300">No hay artículos publicados todavía.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {posts.map((post, index) => (
-            <div key={post.slug} className="h-full">
-              <div className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 bg-gray-50 dark:bg-gray-700 border border-gray-100 dark:border-gray-600 flex flex-col h-full">
-                <Link href={`/blog/${post.slug}`} className="block group">
-                  <div className="relative h-48 w-full overflow-hidden">
-                    {post.thumbnail && (
-                      <Image 
-                        src={post.thumbnail} 
-                        alt={post.title}
-                        fill
-                        // Dar prioridad a las primeras imágenes (las más propensas a ser LCP)
-                        priority={index < 3}
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        style={{ objectFit: 'cover' }}
-                        className="transition-transform duration-300 group-hover:scale-105"
-                      />
-                    )}
-                  </div>
-                </Link>
-                <div className="p-5 flex flex-col flex-grow">
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{post.date}</p>
-                  <Link href={`/blog/${post.slug}`} className="block group">
-                    <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100 hover:text-teal-600 dark:hover:text-teal-400 transition-colors line-clamp-2">{post.title}</h2>
-                  </Link>
-                  <p className="text-gray-700 dark:text-gray-300 line-clamp-3 mb-4 flex-grow">{post.description}</p>
-                  <div className="mt-auto flex flex-wrap">
-                    {post.tags && post.tags.map((tag) => (
-                      <Link 
-                        key={tag} 
-                        href={`/blog/category/${tag}`}
-                        className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:bg-gray-600 dark:text-gray-300 hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors"
-                      >
-                        #{tag}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <BlogPostCard key={post.slug} post={post} priority={index < 3} />
           ))}
         </div>
       )}
