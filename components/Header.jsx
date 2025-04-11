@@ -27,20 +27,36 @@ const Header = () => {
     };
   }, []);
 
+  // Definir colores base según el tema
+  const textColor = theme === 'light' ? '#1f2937' : '#ffffff';
+  const hoverColor = '#0d9488'; // teal-500
+  
+  // Manejadores de eventos hover
+  const handleMouseEnter = (e) => {
+    e.target.style.color = hoverColor;
+  };
+  
+  const handleMouseLeave = (e) => {
+    e.target.style.color = textColor;
+  };
+
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled 
-          ? "bg-primary backdrop-blur-sm shadow-lg py-2" 
-          : "bg-primary py-4"
+          ? "backdrop-blur-sm shadow-lg py-2" 
+          : "py-4"
       }`}
+      style={{
+        backgroundColor: theme === 'light' ? 'rgba(255, 255, 255, 0.95)' : 'rgba(0, 0, 0, 0.95)'
+      }}
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           <Link href="/" className="group relative">
             <span className="text-2xl font-extrabold tracking-tight relative inline-block">
               <span className="text-teal-500">Mostapha</span>
-              <span className="text-secondary dark:text-white">.dev</span>
+              <span style={{ color: textColor }}>.dev</span>
               <span className={`absolute -bottom-0.5 left-0 w-0 h-0.5 ${theme === 'dark' ? 'bg-teal-400' : 'bg-indigo-600'} group-hover:w-full transition-all duration-300`}></span>
             </span>
           </Link>
@@ -50,14 +66,17 @@ const Header = () => {
               <Link
                 key={index}
                 href={item.link}
-                className="text-secondary hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors"
+                style={{ color: textColor }}
+                className="transition-colors"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 {item.title}  
               </Link>
             ))}
           </div>
           <button onClick={toggleTheme} className="p-2 rounded-full hover:bg-gray-200/10 transition-colors">
-            {theme == "dark" ? (
+            {theme === "dark" ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-yellow-300"
@@ -92,7 +111,8 @@ const Header = () => {
             className="md:hidden focus:outline-none"
           >
             <svg
-              className="w-6 h-6 text-secondary dark:text-white"
+              style={{ color: textColor }}
+              className="w-6 h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -122,7 +142,10 @@ const Header = () => {
               <Link
                 key={index}
                 href={item.link}
-                className="text-secondary hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors py-2 block"
+                style={{ color: textColor }}
+                className="transition-colors py-2 block"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
                 onClick={() => setIsOpen(false)}
               >
                 {item.title}
@@ -131,14 +154,28 @@ const Header = () => {
             
             {/* Categorías del blog en menú móvil cuando estamos en la página del blog */}
             {isBlogPage && (
-              <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <div className="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">Categorías del Blog</div>
+              <div className="mt-4 pt-4 border-t" style={{ borderColor: theme === 'light' ? '#e5e7eb' : '#374151' }}>
+                <div style={{ color: theme === 'light' ? '#6b7280' : '#9ca3af' }} className="mb-2 text-sm font-medium">
+                  Categorías del Blog
+                </div>
                 <div className="flex flex-wrap gap-2">
                   {blogCategories.map((category, index) => (
                     <Link 
                       key={index}
                       href={`/blog/category/${category.slug}`}
-                      className="inline-block px-3 py-1 mb-2 text-sm rounded-full bg-gray-100 text-gray-800 hover:bg-teal-500 hover:text-white dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-teal-600 transition-colors"
+                      style={{ 
+                        backgroundColor: theme === 'light' ? '#f3f4f6' : '#1f2937',
+                        color: theme === 'light' ? '#1f2937' : '#e5e7eb'
+                      }}
+                      className="inline-block px-3 py-1 mb-2 text-sm rounded-full transition-colors"
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = '#0d9488';
+                        e.target.style.color = '#ffffff';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = theme === 'light' ? '#f3f4f6' : '#1f2937';
+                        e.target.style.color = theme === 'light' ? '#1f2937' : '#e5e7eb';
+                      }}
                       onClick={() => setIsOpen(false)}
                     >
                       {category.title}
