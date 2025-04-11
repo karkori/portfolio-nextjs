@@ -18,13 +18,31 @@ export default async function CategoryPage({ params }) {
   
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-2 text-teal-500">
-        {category.title}
-      </h1>
-      <div className="mb-8">
-        <Link href="/blog" className="text-teal-500 hover:text-teal-600 dark:hover:text-teal-400">
-          ← Volver a todos los artículos
+      <div className="flex flex-col gap-4 mb-8">
+        <Link 
+          href="/blog" 
+          className="inline-flex items-center text-sm font-medium text-teal-500 hover:text-teal-600 dark:hover:text-teal-400"
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-4 w-4 mr-1" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M10 19l-7-7m0 0l7-7m-7 7h18" 
+            />
+          </svg>
+          Volver a todos los artículos
         </Link>
+        
+        <h1 className="text-3xl font-bold text-teal-500">
+          {category.title}
+        </h1>
       </div>
       
       {filteredPosts.length === 0 ? (
