@@ -37,7 +37,7 @@ const BlogHeader = () => {
           <Link href="/" className="group relative">
             <span className="text-2xl font-extrabold tracking-tight relative inline-block">
               <span className="text-teal-500">Mostapha</span>
-              <span className="text-secondary dark:text-white">.dev</span>
+              <span className="text-gray-900 dark:text-white">.dev</span>
               <span className={`absolute -bottom-0.5 left-0 w-0 h-0.5 ${theme === 'dark' ? 'bg-teal-400' : 'bg-indigo-600'} group-hover:w-full transition-all duration-300`}></span>
             </span>
           </Link>
@@ -47,7 +47,7 @@ const BlogHeader = () => {
               <Link
                 key={index}
                 href={`/blog/category/${category.slug}`}
-                className="text-secondary hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors"
+                className="text-gray-900 hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors font-medium"
               >
                 {category.title}
               </Link>
@@ -143,7 +143,7 @@ const BlogHeader = () => {
                 <Link
                   key={index}
                   href={`/blog/category/${category.slug}`}
-                  className="text-secondary hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors"
+                  className="text-gray-900 hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors font-medium"
                   onClick={() => setIsOpen(false)}
                 >
                   {category.title}
@@ -151,7 +151,7 @@ const BlogHeader = () => {
               ))}
               <Link 
                 href="/" 
-                className="text-secondary hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors"
+                className="text-gray-900 hover:text-teal-500 dark:text-white dark:hover:text-teal-400 transition-colors font-medium"
                 onClick={() => setIsOpen(false)}
               >
                 Portfolio
