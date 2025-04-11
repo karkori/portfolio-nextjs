@@ -1,9 +1,9 @@
+import BlogPostCard from '@/components/BlogPostCard';
+import { blogCategories } from '@/lib/data';
 import fs from 'fs';
-import path from 'path';
 import matter from 'gray-matter';
 import Link from 'next/link';
-import Image from 'next/image';
-import { blogCategories } from '@/lib/data';
+import path from 'path';
 
 export default async function CategoryPage({ params }) {
   const { slug } = params;
@@ -52,33 +52,7 @@ export default async function CategoryPage({ params }) {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPosts.map((post) => (
-            <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">
-              <div className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
-                <div className="relative h-48 w-full overflow-hidden">
-                  {post.thumbnail && (
-                    <Image 
-                      src={post.thumbnail} 
-                      alt={post.title}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                      className="transition-transform duration-300 group-hover:scale-105"
-                    />
-                  )}
-                </div>
-                <div className="p-5">
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{post.date}</p>
-                  <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{post.title}</h2>
-                  <p className="text-gray-700 dark:text-gray-300 line-clamp-3">{post.description}</p>
-                  <div className="mt-4 flex flex-wrap">
-                    {post.tags && post.tags.map((tag) => (
-                      <span key={tag} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:bg-gray-700 dark:text-gray-300 hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </Link>
+            <BlogPostCard key={post.slug} post={post} />
           ))}
         </div>
       )}
