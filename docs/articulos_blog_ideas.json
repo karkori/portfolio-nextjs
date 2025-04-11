@@ -1,19 +1,10 @@
 {
   "ideas_articulos": [
-    {
-      "titulo": "Microservicios con Spring Cloud - Arquitectura completa paso a paso",
-      "descripcion": "Implementación de una arquitectura de microservicios completa usando Spring Cloud, incluyendo Service Discovery, Config Server, API Gateway, Circuit Breakers y despliegue en Kubernetes.",
-      "categoria": "Arquitectura",
-      "tags": ["java", "spring", "microservicios", "spring-cloud", "kubernetes"],
-      "nivel_dificultad": "Intermedio-Avanzado",
-      "estimacion_visitas": "Alta",
-      "estado": "Pendiente"
-    },
-    {
+    { 
       "titulo": "Seguridad en aplicaciones Spring Boot - Desde autenticación básica hasta OAuth2 y JWT",
-      "descripcion": "Guía completa sobre cómo implementar diferentes niveles de seguridad en aplicaciones Spring Boot, desde configuraciones básicas hasta soluciones avanzadas con OAuth2 y JWT.",
-      "categoria": "Seguridad",
-      "tags": ["java", "spring", "seguridad", "oauth2", "jwt"],
+      "descripcion": "Guía completa sobre cómo implementar di.jiu8l7t.ferentes niveles de seguridad en aplicaciones Spring Boot, desde configuraciones básicas hasta soluciones avanzadas con OAuth2 y JWT.",
+      "categoria": "Backend",
+      "tags": ["java", "spring", "seguridad", "backend", "jwt"],
       "nivel_dificultad": "Intermedio",
       "estimacion_visitas": "Muy alta",
       "estado": "Pendiente"

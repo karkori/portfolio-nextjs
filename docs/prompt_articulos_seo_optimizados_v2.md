@@ -8,11 +8,12 @@ Primero, lee el archivo "mejores_practicas_seo_2025.md" para entender e implemen
 
 ## Estrategia de Generación de Contenido por Trozos
 
-Para artículos extensos (más de 2000 palabras), es fundamental utilizar una estrategia de generación por trozos secuenciales:
+Para artículos extensos (más de 2000 palabras), es fundamental utilizar una estrategia de generación por trozos pequeños secuenciales (es un requisito técnico no negociable):
 
 1. **Genera el artículo en secciones modulares**:
    - Primero, crea los metadatos y la introducción
-   - Luego, añade cada sección principal una por una
+   - Crear un indice de la estructura del artículo con enlaces a cada sección
+   - Luego, añade cada sección principal una por una 
    - Finalmente, agrega la conclusión y recursos
 
 2. **Por qué usar este enfoque**:
@@ -22,7 +23,8 @@ Para artículos extensos (más de 2000 palabras), es fundamental utilizar una es
    - Reduce la probabilidad de perder todo el trabajo si ocurre un error
    - Garantiza consistencia a lo largo de todo el artículo
 
-3. **Estructura recomendada de trozos**:
+3. **Ejemplo de Estructura recomendada de trozos**:
+La creación de un artículo extenso requiere una organización clara y modular. Aquí está un ejemplo de cómo se estructura el artículo, pero no es estricamente literal, ordena de forma inteligente:
    - Trozo 1: Metadatos + Introducción + "¿Qué vamos a construir?" + Prerrequisitos
    - Trozo 2: Paso 1 y Paso 2 del contenido principal
    - Trozo 3: Paso 3 y Paso 4 del contenido principal
