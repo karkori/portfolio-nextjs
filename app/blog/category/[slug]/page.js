@@ -18,24 +18,24 @@ export default async function CategoryPage({ params }) {
   
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-2 text-secondary">
+      <h1 className="text-3xl font-bold mb-2 text-teal-500">
         {category.title}
       </h1>
       <div className="mb-8">
-        <Link href="/blog" className="text-teal-500 hover:underline">
+        <Link href="/blog" className="text-teal-500 hover:text-teal-600 dark:hover:text-teal-400">
           ← Volver a todos los artículos
         </Link>
       </div>
       
       {filteredPosts.length === 0 ? (
         <div className="text-center py-10">
-          <p className="text-xl text-gray-600 dark:text-secondary">No hay artículos en esta categoría todavía.</p>
+          <p className="text-xl text-gray-600 dark:text-gray-300">No hay artículos en esta categoría todavía.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredPosts.map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="block group">
-              <div className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700">
+              <div className="rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
                 <div className="relative h-48 w-full overflow-hidden">
                   {post.thumbnail && (
                     <Image 
@@ -49,11 +49,11 @@ export default async function CategoryPage({ params }) {
                 </div>
                 <div className="p-5">
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">{post.date}</p>
-                  <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{post.title}</h2>
-                  <p className="text-gray-700 dark:text-secondary line-clamp-3">{post.description}</p>
+                  <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">{post.title}</h2>
+                  <p className="text-gray-700 dark:text-gray-300 line-clamp-3">{post.description}</p>
                   <div className="mt-4 flex flex-wrap">
                     {post.tags && post.tags.map((tag) => (
-                      <span key={tag} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:bg-gray-700 dark:text-secondary hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors">
+                      <span key={tag} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 dark:bg-gray-700 dark:text-gray-300 hover:bg-teal-100 dark:hover:bg-teal-900 transition-colors">
                         #{tag}
                       </span>
                     ))}
