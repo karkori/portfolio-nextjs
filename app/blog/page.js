@@ -13,7 +13,7 @@ export default async function Blog() {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="flex flex-col md:flex-row md:items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-secondary mb-4 md:mb-0">Mi Blog</h1>
+        <h1 className="text-3xl font-bold text-teal-500 mb-4 md:mb-0">Mi Blog</h1>
         
         {/* Botón para crear un nuevo artículo (visible solo en desarrollo) */}
         {isDevelopment && (
