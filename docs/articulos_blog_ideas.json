@@ -1,0 +1,94 @@
+{
+  "ideas_articulos": [
+    {
+      "titulo": "Microservicios con Spring Cloud - Arquitectura completa paso a paso",
+      "descripcion": "Implementación de una arquitectura de microservicios completa usando Spring Cloud, incluyendo Service Discovery, Config Server, API Gateway, Circuit Breakers y despliegue en Kubernetes.",
+      "categoria": "Arquitectura",
+      "tags": ["java", "spring", "microservicios", "spring-cloud", "kubernetes"],
+      "nivel_dificultad": "Intermedio-Avanzado",
+      "estimacion_visitas": "Alta",
+      "estado": "Pendiente"
+    },
+    {
+      "titulo": "Seguridad en aplicaciones Spring Boot - Desde autenticación básica hasta OAuth2 y JWT",
+      "descripcion": "Guía completa sobre cómo implementar diferentes niveles de seguridad en aplicaciones Spring Boot, desde configuraciones básicas hasta soluciones avanzadas con OAuth2 y JWT.",
+      "categoria": "Seguridad",
+      "tags": ["java", "spring", "seguridad", "oauth2", "jwt"],
+      "nivel_dificultad": "Intermedio",
+      "estimacion_visitas": "Muy alta",
+      "estado": "Pendiente"
+    },
+    {
+      "titulo": "GraphQL con Spring Boot - API modernas y eficientes",
+      "descripcion": "Implementación de APIs GraphQL con Spring Boot, ventajas sobre REST, casos de uso prácticos y mejores prácticas de diseño.",
+      "categoria": "API",
+      "tags": ["java", "spring", "graphql", "api", "rest"],
+      "nivel_dificultad": "Intermedio",
+      "estimacion_visitas": "Alta",
+      "estado": "Pendiente"
+    },
+    {
+      "titulo": "Desarrollo Full Stack con Spring Boot y React - Guía completa",
+      "descripcion": "Desarrollo de aplicaciones full stack combinando Spring Boot para el backend y React para el frontend, incluyendo estructura del proyecto, integración y despliegue.",
+      "categoria": "Full Stack",
+      "tags": ["java", "spring", "react", "javascript", "fullstack"],
+      "nivel_dificultad": "Intermedio",
+      "estimacion_visitas": "Muy alta",
+      "estado": "Pendiente"
+    },
+    {
+      "titulo": "Optimización de rendimiento en aplicaciones Spring Boot - De desarrollo a producción",
+      "descripcion": "Técnicas y estrategias para optimizar el rendimiento de aplicaciones Spring Boot en producción, incluyendo profiling, optimización de consultas, caching y tuning de JVM.",
+      "categoria": "Rendimiento",
+      "tags": ["java", "spring", "performance", "optimizacion", "produccion"],
+      "nivel_dificultad": "Avanzado",
+      "estimacion_visitas": "Alta",
+      "estado": "Pendiente"
+    },
+    {
+      "titulo": "Testing avanzado en Spring Boot - Más allá de los tests unitarios",
+      "descripcion": "Estrategias y técnicas avanzadas de testing para aplicaciones Spring Boot, incluyendo testing de integración, tests de arquitectura, contract testing y test containers.",
+      "categoria": "Testing",
+      "tags": ["java", "spring", "testing", "calidad", "testcontainers"],
+      "nivel_dificultad": "Intermedio-Avanzado",
+      "estimacion_visitas": "Alta",
+      "estado": "Pendiente"
+    },
+    {
+      "titulo": "Spring WebFlux y programación reactiva - Aplicaciones asíncronas de alto rendimiento",
+      "descripcion": "Introducción a la programación reactiva con Spring WebFlux, diferencias con MVC tradicional, casos de uso e implementación práctica paso a paso.",
+      "categoria": "Programación",
+      "tags": ["java", "spring", "webflux", "reactivo", "asincrono"],
+      "nivel_dificultad": "Avanzado",
+      "estimacion_visitas": "Media-Alta",
+      "estado": "Pendiente"
+    },
+    {
+      "titulo": "Integración continua con GitLab CI para aplicaciones Java - Guía completa",
+      "descripcion": "Implementación de un pipeline de integración continua con GitLab CI para aplicaciones Java/Spring Boot, desde el desarrollo hasta producción.",
+      "categoria": "DevOps",
+      "tags": ["devops", "java", "gitlab", "ci-cd", "integracion-continua"],
+      "nivel_dificultad": "Intermedio",
+      "estimacion_visitas": "Alta",
+      "estado": "Pendiente"
+    },
+    {
+      "titulo": "Monitorización y observabilidad en microservicios Spring Boot - Prometheus, Grafana y más",
+      "descripcion": "Implementación de estrategias de monitorización y observabilidad para arquitecturas de microservicios con Spring Boot, utilizando Prometheus, Grafana, ELK y Jaeger.",
+      "categoria": "DevOps",
+      "tags": ["java", "spring", "microservicios", "monitorizacion", "observabilidad"],
+      "nivel_dificultad": "Intermedio-Avanzado",
+      "estimacion_visitas": "Alta",
+      "estado": "Pendiente"
+    },
+    {
+      "titulo": "Desarrollo guiado por eventos (Event-Driven) con Spring Boot y Kafka",
+      "descripcion": "Implementación de arquitecturas guiadas por eventos utilizando Spring Boot y Apache Kafka, incluyendo patrones CQRS, Event Sourcing y casos de uso prácticos.",
+      "categoria": "Arquitectura",
+      "tags": ["java", "spring", "kafka", "eventos", "cqrs"],
+      "nivel_dificultad": "Avanzado",
+      "estimacion_visitas": "Media-Alta",
+      "estado": "Pendiente"
+    }
+  ]
+}

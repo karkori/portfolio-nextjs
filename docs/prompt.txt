@@ -1,0 +1,1 @@
+muy bien ahora basate sobre el documento de buenas practicas seo docs\mejores_practicas_seo_2025.md y el prompt docs\prompt_articulos_seo_optimizados_v2.md que has creado para generar el articulo. pero recuerda que debe seguir la misma estructura de content\blog\ci-cd-spring-boot-guia-completa.md
