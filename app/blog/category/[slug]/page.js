@@ -49,6 +49,7 @@ export async function generateMetadata({ params }) {
 export default async function CategoryPage({ params, searchParams }) {
   // Next.js 15 requiere que los parámetros sean esperados
   params = await params;
+  searchParams = await searchParams;
   
   // Obtener el número de página de los parámetros de búsqueda o usar 1 como valor predeterminado
   const currentPage = Number(searchParams?.page) || 1;

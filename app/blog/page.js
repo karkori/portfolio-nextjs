@@ -13,8 +13,11 @@ export { metadata };
 const POSTS_PER_PAGE = SITE_CONFIG.blog.postsPerPage;
 
 export default async function Blog({ searchParams }) {
+  // Next.js 15 requiere que los parámetros sean esperados
+  const params = await searchParams;
+  
   // Obtener el número de página de los parámetros de búsqueda o usar 1 como valor predeterminado
-  const currentPage = Number(searchParams?.page) || 1;
+  const currentPage = Number(params?.page) || 1;
   
   // Obtener todos los posts y la información de paginación
   const { posts, totalPosts, totalPages } = await getPaginatedPosts(currentPage, POSTS_PER_PAGE);
