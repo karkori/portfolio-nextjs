@@ -1,5 +1,4 @@
 "use client";
-import { Inter } from "next/font/google";
 import BlogHeader from "@/components/BlogHeader";
 import Footer from "@/components/Footer";
 
