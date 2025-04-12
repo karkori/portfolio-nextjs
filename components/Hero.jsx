@@ -66,13 +66,14 @@ const Hero = () => {
                 </svg>
                 Blog
               </Link>
-              <Link
+              <a
                 href="/pdf/Mostapha_Bourarach_CV_Fullstack_03_27_2025.pdf"
                 className={`border border-teal-600 px-6 py-3 rounded-lg transition-colors flex items-center justify-center ${
                   theme === 'dark' ? 'text-white border-teal-500' : 'text-secondary hover:bg-teal-600/10'
                 }`}
                 target="_blank"
                 rel="noopener noreferrer"
+                download="Mostapha_Bourarach_CV_Fullstack.pdf"
               >
                 <svg 
                   xmlns="http://www.w3.org/2000/svg" 
@@ -89,7 +90,7 @@ const Hero = () => {
                   />
                 </svg>
                 Download CV
-              </Link>
+              </a>
             </div>
             <div className="flex items-center mt-8 space-x-4">
               <a 
