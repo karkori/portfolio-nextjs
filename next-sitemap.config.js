@@ -13,9 +13,6 @@ module.exports = {
     '/api/*',
   ],
   robotsTxtOptions: {
-    additionalSitemaps: [
-      `${siteUrl}/server-sitemap.xml`,
-    ],
     policies: [
       {
         userAgent: '*',
@@ -23,7 +20,19 @@ module.exports = {
         disallow: [
           '/admin',
           '/api/*',
+          '/_next/',
+          '/static/images/placeholder.jpg',
+          '/404',
+          '/500'
         ]
+      },
+      {
+        userAgent: 'AhrefsBot',
+        crawlDelay: 10
+      },
+      {
+        userAgent: 'SemrushBot',
+        crawlDelay: 10
       }
     ]
   },
