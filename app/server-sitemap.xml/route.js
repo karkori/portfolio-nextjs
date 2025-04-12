@@ -4,7 +4,7 @@ import path from 'path';
 import matter from 'gray-matter';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://mostapha.dev';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   
   // Obtener artículos del blog
   const posts = await getAllPosts();

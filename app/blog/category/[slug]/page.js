@@ -15,6 +15,7 @@ export async function generateMetadata({ params }) {
   // Crear un título personalizado para la categoría
   const title = `${category.title} | Blog de Mostapha.dev`;
   const description = `Artículos sobre ${category.title.toLowerCase()} - Tutoriales, guías y consejos de desarrollo`;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   
   return {
     title: title,
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: title,
       description: description,
-      url: `https://mostapha.dev/blog/category/${slug}`,
+      url: `${baseUrl}/blog/category/${slug}`,
       type: 'website',
       images: [
         {

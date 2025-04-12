@@ -37,7 +37,8 @@ export async function generateMetadata({ params }) {
 
   // Descripción para meta: descripción del frontmatter o un extracto del contenido
   const description = post.description || post.content.substring(0, 160).replace(/[#*`]/g, '');
-  const url = `https://mostapha.dev/blog/${slug}`;
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const url = `${baseUrl}/blog/${slug}`;
   
   return {
     title: post.title,

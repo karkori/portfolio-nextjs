@@ -1,6 +1,10 @@
 /** @type {import('next-sitemap').IConfig} */
+
+// Determinar la URL base
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://mostapha.dev',
+  siteUrl: siteUrl,
   generateRobotsTxt: true,
   sitemapSize: 7000,
   exclude: [
@@ -10,7 +14,7 @@ module.exports = {
   ],
   robotsTxtOptions: {
     additionalSitemaps: [
-      'https://mostapha.dev/server-sitemap.xml',
+      `${siteUrl}/server-sitemap.xml`,
     ],
     policies: [
       {
