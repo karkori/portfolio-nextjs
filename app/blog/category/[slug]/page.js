@@ -164,22 +164,20 @@ async function getPosts() {
         tags = tags.split(',').map(tag => tag.trim());
       }
       
+      // Convertir la fecha a objeto Date para ordenación correcta
+      const date = data.date ? new Date(data.date) : new Date();
+      
       return {
         slug,
         title: data.title || '',
-        date: data.date ? new Date(data.date).toLocaleDateString() : '',
+        date: date,
+        dateFormatted: date.toLocaleDateString(),
         description: data.description || '',
         thumbnail: data.thumbnail || '/images/placeholder.jpg',
         tags: tags,
       };
     })
-    .sort((a, b) => {
-      if (a.date < b.date) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
+    .sort((a, b) => b.date - a.date); // Ordenar de más reciente a más antiguo
   
   return posts;
 }

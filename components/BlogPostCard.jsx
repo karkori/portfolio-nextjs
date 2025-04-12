@@ -66,7 +66,7 @@ const BlogPostCard = ({ post, priority = false }) => {
         </Link>
         
         <div className="p-5 flex flex-col flex-grow">
-          <p style={dateStyle} className="text-sm mb-2">{post.date}</p>
+          <p style={dateStyle} className="text-sm mb-2">{post.dateFormatted || (post.date instanceof Date ? post.date.toLocaleDateString() : post.date)}</p>
           <Link href={`/blog/${post.slug}`} className="block">
             <h2 
               className="text-xl font-semibold mb-2 transition-colors line-clamp-2"
