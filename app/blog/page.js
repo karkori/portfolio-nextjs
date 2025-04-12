@@ -4,11 +4,20 @@ import matter from 'gray-matter';
 import Link from 'next/link';
 import path from 'path';
 import { metadata } from './metadata';
+import Pagination from '@/components/Pagination';
 
 export { metadata };
 
-export default async function Blog() {
-  const posts = await getPosts();
+// Número de posts por página
+const POSTS_PER_PAGE = 3;
+
+export default async function Blog({ searchParams }) {
+  // Obtener el número de página de los parámetros de búsqueda o usar 1 como valor predeterminado
+  const currentPage = Number(searchParams?.page) || 1;
+  
+  // Obtener todos los posts y la información de paginación
+  const { posts, totalPosts, totalPages } = await getPaginatedPosts(currentPage, POSTS_PER_PAGE);
+  
   // Verificar si estamos en desarrollo
   const isDevelopment = process.env.NODE_ENV === 'development';
   
@@ -36,14 +45,50 @@ export default async function Blog() {
           <p className="text-xl text-gray-600 dark:text-gray-300">No hay artículos publicados todavía.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post, index) => (
-            <BlogPostCard key={post.slug} post={post} priority={index < 3} />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {posts.map((post, index) => (
+              <BlogPostCard key={post.slug} post={post} priority={index < 3} />
+            ))}
+          </div>
+          
+          {/* Componente de paginación */}
+          {totalPages > 1 && (
+            <div className="mt-12">
+              <Pagination 
+                currentPage={currentPage} 
+                totalPages={totalPages} 
+                basePath="/blog" 
+              />
+            </div>
+          )}
+        </>
       )}
     </div>
   );
+}
+
+async function getPaginatedPosts(page = 1, limit = 9) {
+  const allPosts = await getPosts();
+  const totalPosts = allPosts.length;
+  const totalPages = Math.ceil(totalPosts / limit);
+  
+  // Asegurarse de que la página solicitada es válida
+  const validPage = page < 1 ? 1 : page > totalPages ? totalPages : page;
+  
+  // Calcular el índice de inicio y fin para la paginación
+  const startIndex = (validPage - 1) * limit;
+  const endIndex = startIndex + limit;
+  
+  // Obtener los posts para la página actual
+  const paginatedPosts = allPosts.slice(startIndex, endIndex);
+  
+  return {
+    posts: paginatedPosts,
+    totalPosts,
+    totalPages,
+    currentPage: validPage
+  };
 }
 
 async function getPosts() {
@@ -75,22 +120,20 @@ async function getPosts() {
         tags = tags.split(',').map(tag => tag.trim());
       }
       
+      // Convertir la fecha a objeto Date para ordenación correcta
+      const date = data.date ? new Date(data.date) : new Date();
+      
       return {
         slug,
         title: data.title || '',
-        date: data.date ? new Date(data.date).toLocaleDateString() : '',
+        date: date,
+        dateFormatted: date.toLocaleDateString(),
         description: data.description || '',
         thumbnail: data.thumbnail || '/images/placeholder.jpg',
         tags: tags,
       };
     })
-    .sort((a, b) => {
-      if (a.date < b.date) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
+    .sort((a, b) => b.date - a.date); // Ordenar de más reciente a más antiguo
   
   return posts;
 }

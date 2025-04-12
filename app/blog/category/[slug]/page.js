@@ -4,6 +4,10 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import Link from 'next/link';
 import path from 'path';
+import Pagination from '@/components/Pagination';
+
+// Número de posts por página
+const POSTS_PER_PAGE = 3;
 
 export async function generateMetadata({ params }) {
   // Necesitamos esperar a los parámetros en Next.js 15
@@ -43,17 +47,34 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function CategoryPage({ params }) {
+export default async function CategoryPage({ params, searchParams }) {
   // Next.js 15 requiere que los parámetros sean esperados
   params = await params;
   
+  // Obtener el número de página de los parámetros de búsqueda o usar 1 como valor predeterminado
+  const currentPage = Number(searchParams?.page) || 1;
+  
   const { slug } = params;
-  const posts = await getPosts();
+  const allPosts = await getPosts();
   
   // Si la categoría es "todos", mostrar todos los posts
   const filteredPosts = slug === 'todos' 
-    ? posts 
-    : posts.filter(post => post.tags && post.tags.includes(slug));
+    ? allPosts 
+    : allPosts.filter(post => post.tags && post.tags.includes(slug));
+  
+  // Configurar la paginación
+  const totalPosts = filteredPosts.length;
+  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+  
+  // Asegurarse de que la página solicitada es válida
+  const validPage = currentPage < 1 ? 1 : currentPage > totalPages ? totalPages : currentPage;
+  
+  // Calcular el índice de inicio y fin para la paginación
+  const startIndex = (validPage - 1) * POSTS_PER_PAGE;
+  const endIndex = startIndex + POSTS_PER_PAGE;
+  
+  // Obtener los posts para la página actual
+  const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
   
   const category = blogCategories.find(cat => cat.slug === slug) || { title: 'Categoría' };
   
@@ -91,17 +112,29 @@ export default async function CategoryPage({ params }) {
           <p className="text-xl text-gray-600 dark:text-gray-300">No hay artículos en esta categoría todavía.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredPosts.map((post) => (
-            <BlogPostCard key={post.slug} post={post} />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {paginatedPosts.map((post) => (
+              <BlogPostCard key={post.slug} post={post} />
+            ))}
+          </div>
+          
+          {/* Componente de paginación */}
+          {totalPages > 1 && (
+            <div className="mt-12">
+              <Pagination 
+                currentPage={validPage} 
+                totalPages={totalPages} 
+                basePath={`/blog/category/${slug}`} 
+              />
+            </div>
+          )}
+        </>
       )}
     </div>
   );
 }
 
-// Función para obtener todos los posts
 async function getPosts() {
   const postsDirectory = path.join(process.cwd(), 'content/blog');
   
@@ -131,22 +164,20 @@ async function getPosts() {
         tags = tags.split(',').map(tag => tag.trim());
       }
       
+      // Convertir la fecha a objeto Date para ordenación correcta
+      const date = data.date ? new Date(data.date) : new Date();
+      
       return {
         slug,
         title: data.title || '',
-        date: data.date ? new Date(data.date).toLocaleDateString() : '',
+        date: date,
+        dateFormatted: date.toLocaleDateString(),
         description: data.description || '',
         thumbnail: data.thumbnail || '/images/placeholder.jpg',
         tags: tags,
       };
     })
-    .sort((a, b) => {
-      if (a.date < b.date) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
+    .sort((a, b) => b.date - a.date); // Ordenar de más reciente a más antiguo
   
   return posts;
 }
