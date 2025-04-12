@@ -8,9 +8,9 @@ import Hero from "@/components/Hero";
 import Portfolio from "@/components/Portfolio";
 import MyServices from "@/components/MyServices";
 import WorkingStyle from "@/components/WorkingStyle";
-import Head from "next/head";
 import Script from "next/script";
 import { useEffect } from "react";
+import { PersonSchema, WebSiteSchema } from "@/components/SchemaOrg";
 
 export default function Home() {
   // Función para manejar la redirección tras login con Netlify Identity
@@ -29,14 +29,10 @@ export default function Home() {
 
   return (
     <div className="">
-      <Head>
-        <title>Mostapha.dev</title>
-        <meta name="description" content="Fullstack developer" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
+      {/* Schemas para SEO */}
+      <PersonSchema />
+      <WebSiteSchema />
+      
       {/* Script de Netlify Identity */}
       <Script 
         src="https://identity.netlify.com/v1/netlify-identity-widget.js"

@@ -5,7 +5,47 @@ import matter from 'gray-matter';
 import Link from 'next/link';
 import path from 'path';
 
+export async function generateMetadata({ params }) {
+  // Necesitamos esperar a los parámetros en Next.js 15
+  params = await params;
+  
+  const { slug } = params;
+  const category = blogCategories.find(cat => cat.slug === slug) || { title: 'Categoría' };
+  
+  // Crear un título personalizado para la categoría
+  const title = `${category.title} | Blog de Mostapha.dev`;
+  const description = `Artículos sobre ${category.title.toLowerCase()} - Tutoriales, guías y consejos de desarrollo`;
+  
+  return {
+    title: title,
+    description: description,
+    openGraph: {
+      title: title,
+      description: description,
+      url: `https://mostapha.dev/blog/category/${slug}`,
+      type: 'website',
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(category.title)}&type=category`,
+          width: 1200,
+          height: 630,
+          alt: `Categoría: ${category.title}`
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: title,
+      description: description,
+      images: [`/api/og?title=${encodeURIComponent(category.title)}&type=category`],
+    },
+  };
+}
+
 export default async function CategoryPage({ params }) {
+  // Next.js 15 requiere que los parámetros sean esperados
+  params = await params;
+  
   const { slug } = params;
   const posts = await getPosts();
   
