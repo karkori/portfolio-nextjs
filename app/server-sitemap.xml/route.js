@@ -2,9 +2,10 @@ import { getServerSideSitemap } from 'next-sitemap';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { SITE_CONFIG } from '@/lib/config';
 
 export async function GET() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const baseUrl = SITE_CONFIG.url;
   
   // Obtener artículos del blog
   const posts = await getAllPosts();
@@ -48,7 +49,7 @@ export async function GET() {
   });
   
   // Calcular el número total de páginas para la paginación
-  const POSTS_PER_PAGE = 3;
+  const POSTS_PER_PAGE = SITE_CONFIG.blog.postsPerPage;
   const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
   
   // Añadir páginas de paginación al sitemap

@@ -1,5 +1,6 @@
 "use client";
-import { headerList, blogCategories } from "@/lib/data";
+import { headerList } from "@/lib/data";
+import { BLOG_CATEGORIES } from "@/lib/config";
 import { useTheme } from "@/providers/ThemeProvider";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
@@ -159,7 +160,7 @@ const Header = () => {
                   Categorías del Blog
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {blogCategories.map((category, index) => (
+                  {BLOG_CATEGORIES.map((category, index) => (
                     <Link 
                       key={index}
                       href={`/blog/category/${category.slug}`}

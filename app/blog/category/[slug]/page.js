@@ -1,5 +1,5 @@
 import BlogPostCard from '@/components/BlogPostCard';
-import { blogCategories } from '@/lib/data';
+import { BLOG_CATEGORIES, SITE_CONFIG } from '@/lib/config';
 import fs from 'fs';
 import matter from 'gray-matter';
 import Link from 'next/link';
@@ -7,19 +7,18 @@ import path from 'path';
 import Pagination from '@/components/Pagination';
 
 // Número de posts por página
-const POSTS_PER_PAGE = 3;
+const POSTS_PER_PAGE = SITE_CONFIG.blog.postsPerPage;
 
 export async function generateMetadata({ params }) {
   // Necesitamos esperar a los parámetros en Next.js 15
   params = await params;
   
   const { slug } = params;
-  const category = blogCategories.find(cat => cat.slug === slug) || { title: 'Categoría' };
+  const category = BLOG_CATEGORIES.find(cat => cat.slug === slug) || { title: 'Categoría' };
   
   // Crear un título personalizado para la categoría
-  const title = `${category.title} | Blog de Mostapha.dev`;
+  const title = `${category.title} | Blog de ${SITE_CONFIG.title}`;
   const description = `Artículos sobre ${category.title.toLowerCase()} - Tutoriales, guías y consejos de desarrollo`;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   
   return {
     title: title,
@@ -27,8 +26,8 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: title,
       description: description,
-      url: `${baseUrl}/blog/category/${slug}`,
-      type: 'website',
+      url: `${SITE_CONFIG.url}/blog/category/${slug}`,
+      type: SITE_CONFIG.seo.openGraph.type,
       images: [
         {
           url: `/api/og?title=${encodeURIComponent(category.title)}&type=category`,
@@ -39,7 +38,7 @@ export async function generateMetadata({ params }) {
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: SITE_CONFIG.seo.twitter.cardType,
       title: title,
       description: description,
       images: [`/api/og?title=${encodeURIComponent(category.title)}&type=category`],
@@ -50,6 +49,7 @@ export async function generateMetadata({ params }) {
 export default async function CategoryPage({ params, searchParams }) {
   // Next.js 15 requiere que los parámetros sean esperados
   params = await params;
+  searchParams = await searchParams;
   
   // Obtener el número de página de los parámetros de búsqueda o usar 1 como valor predeterminado
   const currentPage = Number(searchParams?.page) || 1;
@@ -76,7 +76,7 @@ export default async function CategoryPage({ params, searchParams }) {
   // Obtener los posts para la página actual
   const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
   
-  const category = blogCategories.find(cat => cat.slug === slug) || { title: 'Categoría' };
+  const category = BLOG_CATEGORIES.find(cat => cat.slug === slug) || { title: 'Categoría' };
   
   return (
     <div className="container mx-auto py-8 px-4">
@@ -136,7 +136,7 @@ export default async function CategoryPage({ params, searchParams }) {
 }
 
 async function getPosts() {
-  const postsDirectory = path.join(process.cwd(), 'content/blog');
+  const postsDirectory = path.join(process.cwd(), SITE_CONFIG.blog.postsDirectory);
   
   // Verificar si el directorio existe
   if (!fs.existsSync(postsDirectory)) {
@@ -173,7 +173,7 @@ async function getPosts() {
         date: date,
         dateFormatted: date.toLocaleDateString(),
         description: data.description || '',
-        thumbnail: data.thumbnail || '/images/placeholder.jpg',
+        thumbnail: data.thumbnail || SITE_CONFIG.blog.defaultThumbnail,
         tags: tags,
       };
     })

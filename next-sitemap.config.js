@@ -1,10 +1,8 @@
 /** @type {import('next-sitemap').IConfig} */
-
-// Determinar la URL base
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const { SITE_CONFIG } = require('./lib/config');
 
 module.exports = {
-  siteUrl: siteUrl,
+  siteUrl: SITE_CONFIG.url,
   generateRobotsTxt: true,
   sitemapSize: 7000,
   exclude: [
@@ -13,20 +11,18 @@ module.exports = {
     '/api/*',
   ],
   robotsTxtOptions: {
-    additionalSitemaps: [
-      `${siteUrl}/server-sitemap.xml`,
-    ],
     policies: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: [
-          '/admin',
-          '/api/*',
-        ]
-      }
+        disallow: SITE_CONFIG.seo.robotsTxt.disallowPaths
+      },
+      ...Object.entries(SITE_CONFIG.seo.robotsTxt.crawlDelay).map(([agent, delay]) => ({
+        userAgent: agent,
+        crawlDelay: delay
+      }))
     ]
   },
   changefreq: 'daily',
   priority: 0.7,
-}
+};
