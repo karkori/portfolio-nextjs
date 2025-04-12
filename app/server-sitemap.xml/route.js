@@ -22,13 +22,47 @@ export async function GET() {
   
   // Añadir páginas de categorías al sitemap
   categories.forEach(category => {
+    // Añadir la página principal de la categoría
     fields.push({
       loc: `${baseUrl}/blog/category/${category}`,
       lastmod: new Date().toISOString(),
       changefreq: 'weekly',
       priority: 0.7,
     });
+    
+    // Filtrar posts por categoría
+    const categoryPosts = posts.filter(post => post.tags && post.tags.includes(category));
+    
+    // Calcular el número total de páginas para la paginación de esta categoría
+    const totalCategoryPages = Math.ceil(categoryPosts.length / POSTS_PER_PAGE);
+    
+    // Añadir páginas de paginación para esta categoría
+    for (let page = 2; page <= totalCategoryPages; page++) {
+      fields.push({
+        loc: `${baseUrl}/blog/category/${category}?page=${page}`,
+        lastmod: new Date().toISOString(),
+        changefreq: 'weekly',
+        priority: 0.6,
+      });
+    }
   });
+  
+  // Calcular el número total de páginas para la paginación
+  const POSTS_PER_PAGE = 3;
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+  
+  // Añadir páginas de paginación al sitemap
+  for (let page = 1; page <= totalPages; page++) {
+    // No añadir la primera página con ?page=1 porque ya está cubierta por /blog
+    if (page === 1) continue;
+    
+    fields.push({
+      loc: `${baseUrl}/blog?page=${page}`,
+      lastmod: new Date().toISOString(),
+      changefreq: 'weekly',
+      priority: 0.6,
+    });
+  }
   
   return getServerSideSitemap(fields);
 }
@@ -49,26 +83,27 @@ async function getAllPosts() {
       // Eliminar ".md" para obtener el slug
       const slug = fileName.replace(/\.md$/, '');
       
-      // Leer el contenido del archivo
+      // Leer el contenido del archivo como string
       const fullPath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       
       // Usar gray-matter para parsear el frontmatter
       const { data } = matter(fileContents);
       
-      // Convertir las etiquetas a un array si es una cadena
-      let tags = data.tags || [];
-      if (typeof tags === 'string') {
-        tags = tags.split(',').map(tag => tag.trim());
-      }
-      
       return {
         slug,
-        date: data.date ? data.date : new Date().toISOString(),
-        tags: tags,
+        title: data.title || '',
+        date: data.date ? new Date(data.date).toISOString() : new Date().toISOString(),
+        tags: data.tags || [],
       };
     })
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+    .sort((a, b) => {
+      if (a.date < b.date) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
   
   return posts;
 }
