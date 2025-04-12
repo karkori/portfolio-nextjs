@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SITE_CONFIG } from '@/lib/config';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,16 +19,16 @@ export const viewport = {
 };
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(SITE_CONFIG.url),
   title: {
-    default: "Mostapha.dev | Desarrollador Full Stack",
-    template: "%s | Mostapha.dev"
+    default: `${SITE_CONFIG.title} | ${SITE_CONFIG.author.title}`,
+    template: SITE_CONFIG.titleTemplate
   },
-  description: "Portfolio profesional de Mostapha Bourarach, desarrollador Full Stack especializado en React, Next.js y Spring Boot",
+  description: SITE_CONFIG.description,
   keywords: ["desarrollador web", "portfolio", "react", "nextjs", "spring boot", "fullstack", "frontend", "backend"],
-  authors: [{ name: "Mostapha Bourarach" }],
-  creator: "Mostapha Bourarach",
-  publisher: "Mostapha Bourarach",
+  authors: [{ name: SITE_CONFIG.author.name }],
+  creator: SITE_CONFIG.author.name,
+  publisher: SITE_CONFIG.author.name,
   robots: {
     index: true,
     follow: true,
@@ -39,25 +40,25 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "Mostapha.dev | Desarrollador Full Stack",
-    description: "Portfolio profesional de Mostapha Bourarach, desarrollador Full Stack especializado en React, Next.js y Spring Boot",
-    url: "https://mostapha.dev",
-    siteName: "Mostapha.dev",
-    locale: "es_ES",
-    type: "website",
+    title: `${SITE_CONFIG.title} | ${SITE_CONFIG.author.title}`,
+    description: SITE_CONFIG.description,
+    url: SITE_CONFIG.url,
+    siteName: SITE_CONFIG.title,
+    locale: SITE_CONFIG.locale,
+    type: SITE_CONFIG.seo.openGraph.type,
     images: [
       {
         url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Mostapha Bourarach - Desarrollador Full Stack"
+        alt: `${SITE_CONFIG.author.name} - ${SITE_CONFIG.author.title}`
       }
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Mostapha.dev | Desarrollador Full Stack",
-    description: "Portfolio profesional de Mostapha Bourarach, desarrollador Full Stack especializado en React, Next.js y Spring Boot",
+    card: SITE_CONFIG.seo.twitter.cardType,
+    title: `${SITE_CONFIG.title} | ${SITE_CONFIG.author.title}`,
+    description: SITE_CONFIG.description,
     creator: "@MostaphaKarkori",
     images: ["/images/twitter-card.jpg"],
   },
@@ -67,9 +68,9 @@ export const metadata = {
     // yandex: 'YANDEX-VERIFICATION-CODE',
   },
   alternates: {
-    canonical: 'https://mostapha.dev',
+    canonical: SITE_CONFIG.url,
     languages: {
-      'es-ES': 'https://mostapha.dev',
+      'es-ES': SITE_CONFIG.url,
     },
   },
 };

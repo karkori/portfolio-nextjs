@@ -5,11 +5,12 @@ import Link from 'next/link';
 import path from 'path';
 import { metadata } from './metadata';
 import Pagination from '@/components/Pagination';
+import { SITE_CONFIG } from '@/lib/config';
 
 export { metadata };
 
 // Número de posts por página
-const POSTS_PER_PAGE = 3;
+const POSTS_PER_PAGE = SITE_CONFIG.blog.postsPerPage;
 
 export default async function Blog({ searchParams }) {
   // Obtener el número de página de los parámetros de búsqueda o usar 1 como valor predeterminado
@@ -92,7 +93,7 @@ async function getPaginatedPosts(page = 1, limit = 9) {
 }
 
 async function getPosts() {
-  const postsDirectory = path.join(process.cwd(), 'content/blog');
+  const postsDirectory = path.join(process.cwd(), SITE_CONFIG.blog.postsDirectory);
   
   // Verificar si el directorio existe
   if (!fs.existsSync(postsDirectory)) {
@@ -129,7 +130,7 @@ async function getPosts() {
         date: date,
         dateFormatted: date.toLocaleDateString(),
         description: data.description || '',
-        thumbnail: data.thumbnail || '/images/placeholder.jpg',
+        thumbnail: data.thumbnail || SITE_CONFIG.blog.defaultThumbnail,
         tags: tags,
       };
     })
