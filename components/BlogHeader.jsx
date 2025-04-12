@@ -1,5 +1,5 @@
 "use client";
-import { blogCategories } from "@/lib/data";
+import { BLOG_CATEGORIES } from "@/lib/config";
 import { useTheme } from "@/providers/ThemeProvider";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
@@ -59,7 +59,7 @@ const BlogHeader = () => {
           </Link>
 
           <div className="hidden md:flex space-x-6">
-            {blogCategories.map((category, index) => (
+            {BLOG_CATEGORIES.map((category, index) => (
               <Link
                 key={index}
                 href={`/blog/category/${category.slug}`}
@@ -161,7 +161,7 @@ const BlogHeader = () => {
         {isOpen && (
           <div className="md:hidden pt-4 pb-2 transition-all duration-300 ease-in-out">
             <div className="flex flex-col space-y-3">
-              {blogCategories.map((category, index) => (
+              {BLOG_CATEGORIES.map((category, index) => (
                 <Link
                   key={index}
                   href={`/blog/category/${category.slug}`}
