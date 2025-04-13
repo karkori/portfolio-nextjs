@@ -3,11 +3,11 @@ title: Las 10 Herramientas de Desarrollo que Han Revolucionado mi Flujo de Traba
 date: 2025-04-09T11:00:00.000Z
 thumbnail: /images/blog/devtools.png
 description: Descubre las herramientas que han transformado mi productividad como desarrollador y cómo pueden mejorar tu flujo de trabajo diario.
-category: Herramientas
+category: dev-tools
 tags:
   - desarrollo
   - productividad
-  - herramientas
+  - dev-tools
   - vscode
   - devops
 ---
