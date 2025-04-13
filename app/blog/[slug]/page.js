@@ -167,7 +167,7 @@ export default async function BlogPost({ params }) {
           </div>
           
           {post.thumbnail && (
-            <div className="relative w-full h-72 md:h-96 mb-10 rounded-xl overflow-hidden shadow-xl">
+            <div className="relative w-full h-100 md:h-140 mb-10 rounded-xl overflow-hidden shadow-xl">
               <Image 
                 src={post.thumbnail} 
                 alt={post.title}

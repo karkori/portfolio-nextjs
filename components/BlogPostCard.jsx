@@ -50,7 +50,7 @@ const BlogPostCard = ({ post, priority = false }) => {
         onMouseLeave={(e) => e.currentTarget.style.boxShadow = cardStyle.boxShadow}
       >
         <Link href={`/blog/${post.slug}`} className="block group">
-          <div className="relative h-48 w-full overflow-hidden">
+          <div className="relative h-64 w-full overflow-hidden">
             {post.thumbnail && (
               <Image 
                 src={post.thumbnail} 
