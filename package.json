@@ -4,14 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && next-sitemap",
+    "build": "node lib/search-index.js && next build && next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "cms": "npx netlify-cms-proxy-server",
-    "sitemap": "next-sitemap"
+    "sitemap": "next-sitemap",
+    "generate-search-index": "node lib/search-index.js"
   },
   "dependencies": {
     "@next/third-parties": "^15.3.0",
+    "fuse.js": "^7.0.0",
     "gray-matter": "^4.0.3",
     "next": "15.2.4",
     "next-sitemap": "^4.2.3",
