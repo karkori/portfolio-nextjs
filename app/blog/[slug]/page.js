@@ -3,6 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
+import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeStringify from 'rehype-stringify';
@@ -303,6 +304,7 @@ async function getPostBySlug(slug) {
     // Procesar el markdown con rehype-pretty-code
     const result = await unified()
       .use(remarkParse)
+      .use(remarkGfm) // Añadir soporte para GitHub Flavored Markdown (tablas, listas de tareas, etc.)
       .use(remarkRehype)
       .use(rehypePrettyCode, options)
       .use(rehypeStringify)
