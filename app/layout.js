@@ -78,7 +78,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <head>
         {/* Google tag for analytics */}
         <GoogleAnalytics gaId="G-0XR7FK49YF" />
