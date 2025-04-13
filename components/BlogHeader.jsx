@@ -3,10 +3,14 @@ import { BLOG_CATEGORIES } from "@/lib/config";
 import { useTheme } from "@/providers/ThemeProvider";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const BlogHeader = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showSearchInput, setShowSearchInput] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const { toggleTheme, theme } = useTheme();
 
   useEffect(() => {
@@ -35,6 +39,16 @@ const BlogHeader = () => {
   
   const handleMouseLeave = (e) => {
     e.target.style.color = textColor;
+  };
+
+  // Manejar búsqueda
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      router.push(`/search?query=${encodeURIComponent(searchTerm)}`);
+      setShowSearchInput(false);
+      setSearchTerm("");
+    }
   };
 
   return (
@@ -74,6 +88,69 @@ const BlogHeader = () => {
           </div>
 
           <div className="flex items-center">
+            {/* Input de búsqueda desplegable */}
+            {showSearchInput ? (
+              <form 
+                onSubmit={handleSearch} 
+                className="relative mr-2 transition-all duration-300 ease-in-out"
+              >
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Buscar artículos..."
+                  className="py-1 pl-3 pr-8 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-colors duration-200 w-48 md:w-56"
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowSearchInput(false)}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                >
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-4 w-4" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M6 18L18 6M6 6l12 12" 
+                    />
+                  </svg>
+                </button>
+              </form>
+            ) : (
+              <button
+                onClick={() => setShowSearchInput(true)}
+                className="p-2 rounded-full focus:outline-none transition-colors mr-2"
+                aria-label="Buscar"
+                title="Buscar artículos"
+                style={{ color: textColor }}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-5 w-5" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" 
+                  />
+                </svg>
+              </button>
+            )}
+
+            {/* Botón de tema */}
             <button
               onClick={toggleTheme}
               className="p-2 rounded-full focus:outline-none transition-colors mr-2"
@@ -112,6 +189,7 @@ const BlogHeader = () => {
               )}
             </button>
 
+            {/* Botón de menú móvil */}
             <div className="block md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -161,6 +239,39 @@ const BlogHeader = () => {
         {isOpen && (
           <div className="md:hidden pt-4 pb-2 transition-all duration-300 ease-in-out">
             <div className="flex flex-col space-y-3">
+              {/* Búsqueda móvil */}
+              <div className="pb-2 border-b border-gray-200 dark:border-gray-700">
+                <form onSubmit={handleSearch} className="flex items-center">
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Buscar artículos..."
+                    className="flex-1 py-2 px-3 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-colors duration-200"
+                  />
+                  <button
+                    type="submit"
+                    className="ml-2 p-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 transition-colors duration-200"
+                  >
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      className="h-4 w-4" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" 
+                      />
+                    </svg>
+                  </button>
+                </form>
+              </div>
+
+              {/* Enlaces de navegación móvil */}
               {BLOG_CATEGORIES.map((category, index) => (
                 <Link
                   key={index}
