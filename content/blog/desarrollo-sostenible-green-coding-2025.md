@@ -1,5 +1,5 @@
 ---
-title: Green Coding en 2025: Cómo Desarrollar Software Sostenible sin Comprometer el Rendimiento
+title: 'Green Coding en 2025: Cómo Desarrollar Software Sostenible sin Comprometer el Rendimiento'
 date: 2025-04-13T11:30:00.000Z
 thumbnail: /images/blog/green-coding.png
 description: Descubre las mejores prácticas para reducir la huella de carbono de tu código y por qué el desarrollo sostenible se ha convertido en una habilidad esencial para los programadores en 2025.

@@ -1,5 +1,5 @@
 ---
-title: Edge Computing en 2025: La Nueva Frontera para Desarrolladores
+title: 'Edge Computing en 2025: La Nueva Frontera para Desarrolladores'
 date: 2025-04-13T10:00:00.000Z
 thumbnail: /images/blog/edge-computing-2025.png
 description: Descubre cómo el Edge Computing está transformando el desarrollo de aplicaciones y por qué deberías incorporarlo en tus proyectos este 2025.
