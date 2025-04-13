@@ -17,7 +17,7 @@ User-agent: SemrushBot
 Crawl-delay: 10
 
 # Host
-Host: https://mostapha.dev
+Host: https://www.mostapha.dev
 
 # Sitemaps
-Sitemap: https://mostapha.dev/sitemap.xml
+Sitemap: https://www.mostapha.dev/sitemap.xml
