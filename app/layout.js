@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SITE_CONFIG } from '@/lib/config';
+import { GoogleAnalytics } from '@next/third-parties/google'
 import "./globals.css";
 
 const geistSans = Geist({
@@ -79,14 +80,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0XR7FK49YF"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)}
-          gtag('js', new Date());
-          gtag('config', 'G-0XR7FK49YF');
-        </script>
+        {/* Google tag for analytics */}
+        <GoogleAnalytics gaId="G-0XR7FK49YF" />
         
         {/* Script para prevenir el flash de modo claro */}
         <script
