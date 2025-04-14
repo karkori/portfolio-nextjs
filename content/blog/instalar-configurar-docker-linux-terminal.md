@@ -1,6 +1,6 @@
 ---
 title: Guía Rápida para Instalar y Configurar Docker en Linux
-date: 2025-04-14
+date: 2025-04-14T08:15:00.000Z
 thumbnail: /images/blog/docker-linux-terminal.png
 description: Aprende a instalar, configurar y utilizar Docker en sistemas Linux con comandos sencillos desde la terminal. Una guía eficiente para desarrolladores.
 category: Dev-tools

@@ -1,6 +1,6 @@
 ---
 title: Guía Completa para Instalar y Configurar Chocolatey en Windows en 2025
-date: 2025-04-14
+date: 2025-04-14T11:15:00.000Z
 thumbnail: /images/blog/chocolatey-windows.png
 description: Aprende a instalar, configurar y utilizar eficientemente Chocolatey, el gestor de paquetes más potente para Windows que te ahorrará horas de trabajo en la instalación y actualización de software.
 category: Dev-tools

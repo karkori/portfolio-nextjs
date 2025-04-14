@@ -1,6 +1,6 @@
 ---
 title: Cómo Instalar y Configurar Docker en Windows desde la Terminal
-date: 2025-04-14
+date: 2025-04-14T13:15:00.000Z
 thumbnail: /images/blog/docker-windows-terminal.png
 description: Aprende a instalar Docker en Windows utilizando comandos de terminal, configurar el daemon, y administrar eficientemente contenedores sin necesidad de utilizar la interfaz gráfica.
 category: Dev-tools
