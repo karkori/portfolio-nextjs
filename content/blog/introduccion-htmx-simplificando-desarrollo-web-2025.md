@@ -1,6 +1,6 @@
 ---
 title: Introducción a HTMX en 2025 - Simplificando el Desarrollo Web Frontend
-date: 2025-04-14T19:55:00.000Z
+date: 2025-04-14T19:59:00.000Z
 thumbnail: /images/blog/htmx-intro.png
 description: Descubre cómo HTMX está revolucionando el desarrollo web en 2025, permitiéndote crear interfaces dinámicas con menos código JavaScript y mayor rendimiento.
 category: frontend
