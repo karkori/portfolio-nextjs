@@ -1,0 +1,40 @@
+Vamos a crear algunos artículos para mi blog que puedan generar muchas visitas y que tengan poca competencia.
+
+Los artículos los vamos a crear en C:\Users\boura\proyectos\portfolio-nextjs\content\blog y deben seguir esta estructura:
+
+---
+title: Título del artículo
+date: FECHA-ACTUAL
+thumbnail: /images/blog/nombre-imagen.png
+description: Una descripción breve y atractiva del artículo que incentive la lectura.
+category: categoría-principal
+tags:
+  - tag1
+  - tag2
+  - tag3
+  - tag4
+  - tag5
+---
+
+## Contenido del artículo
+
+Sigue esta metodología:
+1. Primero, investiga en la web las tendencias actuales sobre [TEMA] que tengan potencial para generar tráfico pero con poca competencia.
+2. Revisa qué archivos ya existen en mi carpeta de blog para no duplicar contenido.
+3. Crea un artículo completo con:
+   - Un título atractivo que genere clicks
+   - Una introducción que enganche al lector
+   - Contenido detallado y bien estructurado con múltiples secciones
+   - Ejemplos prácticos y código cuando sea relevante
+   - Una conclusión que invite a la interacción
+4. El artículo debe estar dirigido a [NIVEL DE EXPERIENCIA: principiantes/intermedios/avanzados]
+5. Utiliza un tono humano y personalizado (sin exagerar), como si fuera escrito por un desarrollador real compartiendo experiencias personales. Incluye:
+   - Algunas anécdotas o experiencias propias con la tecnología
+   - Ocasionales expresiones de frustraciones o momentos "eureka" que todo desarrollador experimenta
+   - Lenguaje natural con pequeñas imperfecciones ocasionales (como una persona real escribiría)
+   - Evita estructuras demasiado perfectas o repetitivas que sugieran contenido generado por IA
+   - Incluye algunas opiniones personales o preferencias subjetivas sobre herramientas o enfoques
+6. Incluye referencias a herramientas o conceptos actuales de 2025.
+7. Varía la longitud de los párrafos y usa ocasionalmente preguntas retóricas o exclamaciones para dar naturalidad.
+
+Guárdalo como un archivo markdown en la ruta especificada con un nombre de archivo descriptivo y que contenga palabras clave relevantes para SEO.
