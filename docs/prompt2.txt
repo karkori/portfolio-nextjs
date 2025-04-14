@@ -4,7 +4,7 @@ Los artículos los vamos a crear en C:\Users\boura\proyectos\portfolio-nextjs\co
 
 ---
 title: Título del artículo
-date: FECHA-ACTUAL
+date: FECHA-ACTUAL (formato 2025-04-14T19:55:00.000Z)
 thumbnail: /images/blog/nombre-imagen.png
 description: Una descripción breve y atractiva del artículo que incentive la lectura.
 category: categoría-principal
