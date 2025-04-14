@@ -3,12 +3,12 @@ title: Guía Completa para Instalar y Configurar WSL en Windows en 2025
 date: 2025-04-14T17:15:00.000Z
 thumbnail: /images/blog/wsl-windows-linux.png
 description: Aprende a instalar, configurar y optimizar Windows Subsystem for Linux (WSL) para ejecutar distribuciones Linux en Windows con un rendimiento óptimo y funcionalidades avanzadas.
-category: desarrollo
+category: Dev-tools
 tags:
   - windows
   - linux
   - wsl
-  - desarrollo
+  - dev-tools
   - terminal
 ---
 
